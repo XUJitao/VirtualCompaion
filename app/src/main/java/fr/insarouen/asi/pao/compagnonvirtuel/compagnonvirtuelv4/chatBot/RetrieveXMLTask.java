@@ -167,6 +167,7 @@ public class RetrieveXMLTask extends AsyncTask<String, Void, String> {
 
         String xml_contents;
         xml_contents = saveXmlInString(urls[0]);
+        Log.i(LOGTAG, xml_contents);
 
         if(exception!=null)
             xml_contents = saveXmlInString(urls[1]);

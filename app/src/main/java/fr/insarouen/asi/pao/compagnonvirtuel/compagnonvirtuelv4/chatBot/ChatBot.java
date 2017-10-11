@@ -22,32 +22,36 @@
 
 package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.chatBot;
 
-        import android.provider.Settings.Secure;
-        import java.io.StringReader;
-        import java.util.List;
+import android.provider.Settings.Secure;
 
-        import javax.xml.parsers.DocumentBuilder;
-        import javax.xml.parsers.DocumentBuilderFactory;
-        import javax.xml.xpath.XPath;
-        import javax.xml.xpath.XPathConstants;
-        import javax.xml.xpath.XPathFactory;
+import java.io.StringReader;
+import java.net.URI;
+import java.util.List;
 
-        import org.w3c.dom.Document;
-        import org.xml.sax.InputSource;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
 
-        import android.annotation.TargetApi;
-        import android.app.Activity;
-        import android.content.Intent;
-        import android.content.pm.ApplicationInfo;
-        import android.content.pm.PackageManager;
-        import android.database.Cursor;
-        import android.net.Uri;
-        import android.os.AsyncTask;
-        import android.os.Build;
-        import android.provider.ContactsContract;
-        import android.util.Log;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 
-        import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.ToolManager;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.provider.ContactsContract;
+import android.util.Log;
+
+import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.ToolManager;
+
+import static java.net.Proxy.Type.HTTP;
 
 /**
  * Chatbot/VPA that uses the technology of Pandorabots to understand the user queries and provide information
@@ -59,7 +63,6 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.chatBot;
  * @author Lise Quesnel
  * @author Alexandre Levacher
  * @version 3.0, 15/11/15
- *
  */
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -69,12 +72,12 @@ public class ChatBot implements XMLAsyncResponse {
 
     /**
      * Le id propre à l'appareil de l'utilisateur
-     * */
+     */
     private String android_id;
 
     /**
      * L'ID propre au chatbot hebergé sur pandorabots qui est utilisé
-     * */
+     */
     String id = "f36afe5d1e378105"; //"bb9d8db85e36d4b9";	//Id of the agent in Pandorabots
 
     String specializedTopic = null;    //Whether the bot can hold a generic or specialized conversation
@@ -84,7 +87,7 @@ public class ChatBot implements XMLAsyncResponse {
 
     /**
      * L'activité appelante
-     * */
+     */
     Activity callingActivity;
 
     /**
@@ -135,11 +138,11 @@ public class ChatBot implements XMLAsyncResponse {
         // insert %20 for spaces in query
         query = query.replaceAll(" ", "%20");
         //Uses AIML files from A.L.I.C.E
-        fullQuery = "https://www.pandorabots.com/pandora/talk-xml?input=" + query + "&botid=" + id + "&custid=" + android_id ;
+        fullQuery = "https://www.pandorabots.com/pandora/talk-xml?input=" + query + "&botid=" + id + "&custid=" + android_id;
         Log.i(LOGTAG, "Query to pandorabots: " + fullQuery);
 
 		/*
-		 * Start a background asynchronous query to Pandorabots,
+         * Start a background asynchronous query to Pandorabots,
 		 * When this process is finished, the "processXMLContents" method is invoked (see below).
 		 */
         retrieveXML.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, fullQuery, fullQuery); //An Executor that can be used to execute tasks in parallel.
@@ -179,8 +182,7 @@ public class ChatBot implements XMLAsyncResponse {
                 output = output.replaceAll("<br> ", " ");
                 processOutput(output);
                 Log.i(LOGTAG, "processOutput called");
-            }
-            else {
+            } else {
                 Log.d(LOGTAG, "ERREUR : la réponse ne contient pas de balise <that>.");
             }
         } catch (Exception e) {
@@ -231,7 +233,7 @@ public class ChatBot implements XMLAsyncResponse {
      * Processes the contents of the oob tag and carries out the corresponding action: synthesizing a message, carrying
      * out a web search, launching a web site, launching an app or dialing the phone
      *
-     * @param oobContent la partie correspondant aux actions à effectuer
+     * @param oobContent  la partie correspondant aux actions à effectuer
      * @param textToSpeak la partie correspondant au texte à dire
      * @throws Exception
      */
@@ -260,6 +262,85 @@ public class ChatBot implements XMLAsyncResponse {
             launchApp(app);
         }
 
+        // request to send sms
+        if (oobContent.contains("<send>")) { //'envoyer' or 'envoie'
+            if (oobContent.contains("<people>")) {
+                String sendSmsTo = oobContent.split("<people>")[1].split("</people>")[0];
+                if (!Character.isLetter(sendSmsTo.charAt(0))) {
+                    if (oobContent.contains("<message>")) {
+                        String smsContent = oobContent.split("<message>")[1].split("</message>")[0];
+                        Log.d(LOGTAG, "send sms to" + sendSmsTo + " for " + smsContent);
+                        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + sendSmsTo));
+                        intent.setData(Uri.parse("sms_body" + smsContent));
+                        callingActivity.startActivity(intent);
+                    }
+                } else {
+                    Cursor c = callingActivity.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+                    String name, number = "";
+                    String numberToSendSms = "";
+                    String id;
+                    c.moveToFirst();
+                    boolean trouve = false;
+                    while (!trouve) {
+                        if (c.getString(0) != null) {
+
+
+                            name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                            id = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
+                            if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                                Cursor pCur = callingActivity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id},
+                                        null);
+                                while (pCur.moveToNext()) {
+                                    number = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                                }
+                                pCur.close();
+                            }
+
+
+                            String[] words = (oobContent.split("<people>")[1].split("</people>")[0]).split(" ");
+                            StringBuilder sb = new StringBuilder();
+                            if (words[0].length() > 0) {
+                                sb.append(Character.toUpperCase(words[0].charAt(0)) + words[0].subSequence(1, words[0].length()).toString().toLowerCase());
+                                for (int j = 1; j < words.length; j++) {
+                                    sb.append(" ");
+                                    sb.append(Character.toUpperCase(words[j].charAt(0)) + words[j].subSequence(1, words[j].length()).toString().toLowerCase());
+                                }
+                            }
+                            String nom = sb.toString();
+
+                            if (name.equals(nom)) {
+                                numberToSendSms = number;
+                                trouve = true;
+                            }
+                        }
+                        c.moveToNext();
+                    }
+
+                    c.close();
+
+
+                    if (oobContent.contains("<message>")) {
+                        String smsContent = oobContent.split("<message>")[1].split("</message>")[0];
+                        Log.d(LOGTAG, "send sms to" + sendSmsTo + " for " + smsContent);
+                        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + numberToSendSms));
+                        intent.setData(Uri.parse("sms_body" + smsContent));
+                        callingActivity.startActivity(intent);
+                    }
+                }
+            }
+        }
+
+        // request to search a place in the map
+        if (oobContent.contains("<map>")) { // 'googlemap'
+            String address = oobContent.split("<maps>")[1].split("</maps>")[0];
+            address = "geo:0,0?q=" + address;
+            address.replace(" ", "+");
+            Uri uriAddress = Uri.parse(address);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(uriAddress);
+            callingActivity.startActivity(intent);
+        }
+
         // request to launch phone
         //appelle
         if (oobContent.contains("<phone>")) {
@@ -277,8 +358,8 @@ public class ChatBot implements XMLAsyncResponse {
                     String id;
                     c.moveToFirst();
                     boolean trouve = false;
-                    while(!trouve) {
-                        if (c.getString(0)!= null) {
+                    while (!trouve) {
+                        if (c.getString(0) != null) {
 
 
                             name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
@@ -326,9 +407,9 @@ public class ChatBot implements XMLAsyncResponse {
 
 
         // requête pour lancer une animation
-        if (oobContent.contains("<animation>")){
+        if (oobContent.contains("<animation>")) {
             String animation = oobContent.split("<animation>")[1].split("</animation>")[0];
-            Log.i(LOGTAG, "On précise au toolManager que l'on veut lancer l'animation : |" + animation +"|");
+            Log.i(LOGTAG, "On précise au toolManager que l'on veut lancer l'animation : |" + animation + "|");
             // On précise qu'il y a une animation a lancer
             toolManager.setAdditionalAnimation(animation);
             toolManager.setAnswer(textToSpeak);
@@ -338,18 +419,18 @@ public class ChatBot implements XMLAsyncResponse {
 
     /**
      * Performs a Google search query. The value of specialized topic is appended to words in query
-     *
      */
-    private void googleQuery(String googleSearchText){
+    private void googleQuery(String googleSearchText) {
         // insert + for spaces in query
         googleSearchText = googleSearchText.replaceAll(" ", "+");
         String searchEngine = "https://www.google.com/search";
-        String queryString = searchEngine + "?source=ig&rlz=&q="+googleSearchText;
+        String queryString = searchEngine + "?source=ig&rlz=&q=" + googleSearchText;
         launchUrl(queryString);
     }
 
     /**
      * Launches an app
+     *
      * @param app name of the app
      * @throws Exception when the app cannot be launched
      */
@@ -359,10 +440,10 @@ public class ChatBot implements XMLAsyncResponse {
         //get a list of installed apps.
         List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
 
-        String appToCall=null;
+        String appToCall = null;
         for (ApplicationInfo packageInfo : packages) {
             if (packageInfo.packageName.contains(app.toLowerCase())) {
-                if(pm.getLaunchIntentForPackage(packageInfo.packageName)!=null){
+                if (pm.getLaunchIntentForPackage(packageInfo.packageName) != null) {
                     appToCall = packageInfo.packageName;
                     Log.d(LOGTAG, "L'application suivante est lancée : " + appToCall);
                     break;
@@ -370,20 +451,21 @@ public class ChatBot implements XMLAsyncResponse {
             }
         }
         Intent launchApp = pm.getLaunchIntentForPackage(appToCall);
-        if (launchApp!=null)
+        if (launchApp != null)
             callingActivity.startActivity(launchApp);
         else
-            throw new Exception ("Unable to launch "+app+" app");
+            throw new Exception("Unable to launch " + app + " app");
     }
 
     /**
      * Launches a web page
+     *
      * @param url url to the web page
      */
     private void launchUrl(String url) {
         if (!url.startsWith("http://") && !url.startsWith("https://"))
             url = "http://" + url;
-        Log.d(LOGTAG,"L'URL suivante est lancée : "+Uri.parse(url));
+        Log.d(LOGTAG, "L'URL suivante est lancée : " + Uri.parse(url));
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         callingActivity.startActivity(browserIntent);
     }

@@ -13,10 +13,10 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
     signingConfigs {
         config {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            keyAlias 'MyAndroidPAOKey'
+            keyPassword 'alexandrepauchet'
+            storeFile file('/Users/luchenxin/keystores/android.jks')
+            storePassword 'alexandrepauchet'
         }
     }
     compileSdkVersion 23
