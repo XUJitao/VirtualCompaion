@@ -331,7 +331,7 @@ public class ChatBot implements XMLAsyncResponse {
         }
 
         // request to search a place in the map
-        if (oobContent.contains("<map>")) { // 'googlemap'
+        if (oobContent.contains("<maps>")) { // 'googlemap'
             String address = oobContent.split("<maps>")[1].split("</maps>")[0];
             address = "geo:0,0?q=" + address;
             address.replace(" ", "+");
