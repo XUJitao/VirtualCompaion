@@ -1,0 +1,34 @@
+<animation-list
+    android:id="@+id/selected"
+    android:oneshot="false"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/dontdoit0000" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0001" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0002" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0003" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0004" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0006" android:duration="50" />
+    <!--<item android:drawable="@drawable/dontdoit0007" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0008" android:duration="50" />-->
+    <item android:drawable="@drawable/dontdoit0009" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0010" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0011" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0012" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0013" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0014" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0015" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0016" android:duration="50" />
+    <!--<item android:drawable="@drawable/dontdoit0017" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0018" android:duration="50" />-->
+    <item android:drawable="@drawable/dontdoit0019" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0020" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0021" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0022" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0023" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0024" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0025" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0026" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0027" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0028" android:duration="50" />
+    <item android:drawable="@drawable/dontdoit0029" android:duration="50" />
+</animation-list>
