@@ -321,9 +321,9 @@ public class ChatBot implements XMLAsyncResponse {
 
                     if (oobContent.contains("<message>")) {
                         String smsContent = oobContent.split("<message>")[1].split("</message>")[0];
-                        Log.d(LOGTAG, "send sms to" + sendSmsTo + " for " + smsContent);
+                        Log.d(LOGTAG, "send sms to " + sendSmsTo + " to say " + smsContent);
                         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + numberToSendSms));
-                        intent.setData(Uri.parse("sms_body" + smsContent));
+                        intent.putExtra("sms_body", smsContent);
                         callingActivity.startActivity(intent);
                     }
                 }
