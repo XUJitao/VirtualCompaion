@@ -49,8 +49,12 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Log;
 
+import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.ActionActivity;
+import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.MainActivity;
+import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.MapsActivity;
 import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.ToolManager;
 
+import static android.os.Build.VERSION_CODES.M;
 import static java.net.Proxy.Type.HTTP;
 
 /**
@@ -336,8 +340,10 @@ public class ChatBot implements XMLAsyncResponse {
             address = "geo:0,0?q=" + address;
             address.replace(" ", "+");
             Uri uriAddress = Uri.parse(address);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
+          /*  Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(uriAddress);
+            callingActivity.startActivity(intent);*/
+            Intent intent = new Intent(callingActivity, MapsActivity.class);
             callingActivity.startActivity(intent);
         }
 
