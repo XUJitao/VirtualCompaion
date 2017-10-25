@@ -145,14 +145,15 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
      * La méthode qui permet de gérer le cas où la reconnaissance s'est bien passée et que des résultats sont affichés
      *  */
     public void onResult(){
-        StringBuilder resultToShow = new StringBuilder();
+        StringBuilder recognitionToShow = new StringBuilder();
+        StringBuilder answerToShow = new StringBuilder();
         for(String result:recognitionResult){
-            resultToShow.append(result);
-            resultToShow.append("\n");
+            recognitionToShow.append(result);
+            recognitionToShow.append("\n");
         }
-        resultToShow.append("\nLa réponse est :\n");
-        resultToShow.append(answer);
-        setText(resultToShow.toString());
+        answerToShow.append(answer);
+        setRecognition(recognitionToShow.toString());
+        setAnswerInTextView(answerToShow.toString());
         voiceSynthesis.toSpeak(answer);
     }
 
@@ -162,7 +163,7 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
     public void onError() {
         animerLePersonnage("erreur");
         voiceSynthesis.toSpeak(error);
-        setText(error);
+        setAnswerInTextView(error);
     }
 
     /**
@@ -280,8 +281,17 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
      * Permet d'afficher du texte dans le TextView présent sur l'activité où se trouve le compagnon virtuel. Cette méthode ainsi que le TextView ne devraient pas se trouver dans le projet final.
      * @param text le texte à afficher dans le TextView.
      * */
-    public void setText(String text) {
-        TextView mText = (TextView) callingActivity.findViewById(R.id.textView);
+    public void setRecognition(String text) {
+        TextView mText = (TextView) callingActivity.findViewById(R.id.textView_recognition);
+        mText.setText(text);
+    }
+
+    /**
+     * Permet d'afficher du texte dans le TextView présent sur l'activité où se trouve le compagnon virtuel. Cette méthode ainsi que le TextView ne devraient pas se trouver dans le projet final.
+     * @param text le texte à afficher dans le TextView.
+     * */
+    public void setAnswerInTextView(String text) {
+        TextView mText = (TextView) callingActivity.findViewById(R.id.textView_answer);
         mText.setText(text);
     }
 

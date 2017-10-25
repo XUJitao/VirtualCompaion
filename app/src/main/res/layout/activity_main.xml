@@ -7,6 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
     tools:context=".MainActivity"
     android:id="@+id/fond">
 
@@ -25,15 +26,26 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/imageView"
-        android:layout_above="@+id/btn_launcher_recognition" />
+        android:layout_above="@+id/btn_launcher_recognition"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/textView_recognition"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/textView_answer"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
 </RelativeLayout>
