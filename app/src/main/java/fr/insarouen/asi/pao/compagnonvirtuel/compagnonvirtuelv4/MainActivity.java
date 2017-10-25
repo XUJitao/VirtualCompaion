@@ -18,7 +18,7 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4;
  *  @version 1.0
  */
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends Activity {
 
     /**
      * Méthode permettant de créer l'activité
@@ -29,9 +29,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.button);
+        //Button button = (Button) findViewById(R.id.button);
 
-        button.setOnClickListener(this);
+        //button.setOnClickListener(this);
+
+
+        ToolManager toolManager = new ToolManager(this);
+
+        Button speakButton = (Button) findViewById(R.id.btn_launcher_recognition);
+
+
+        speakButton.setOnClickListener(toolManager);
+
+        if (!isSpeechRecognitionActivityPresented(this)) {
+            activateGoogle(this);
+        }
+
     }
 
     /**
@@ -40,7 +53,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * Puis, on vérifie si il y a bien une application qui puisse gérer la synthèse vocale d'installée sur l'appareil de l'utilisateur. Même démarche pour la synthèse vocale.
      * */
 
-    @Override
+   /* @Override
     public void onClick(View v) {
         if (isSpeechRecognitionActivityPresented(this)) {
             Intent intent = new Intent(MainActivity.this, ActionActivity.class);
@@ -49,7 +62,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             activateGoogle(this);
         }
 
-    }
+    }*/
 
     /**
      * La méthode qui vérifie si il y a bien une application qui puisse gérer la reconnaissance vocale d'installé sur l'appareil de l'utilisateur.
