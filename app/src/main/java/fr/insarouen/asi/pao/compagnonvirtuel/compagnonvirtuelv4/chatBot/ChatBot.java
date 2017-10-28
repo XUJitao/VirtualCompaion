@@ -22,6 +22,7 @@
 
 package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.chatBot;
 
+import android.provider.AlarmClock;
 import android.provider.Settings.Secure;
 
 import java.io.StringReader;
@@ -257,6 +258,21 @@ public class ChatBot implements XMLAsyncResponse {
                 query = "www." + (oobContent.split("<url>")[1].split("</url>")[0]).toLowerCase() + ".com";
                 launchUrl(query);
             }
+
+
+        // request to add an alarm clock
+        if (oobContent.contains("<alarmclock>")) {
+            if (oobContent.contains("<hours>")) {
+                int hours = Integer.parseInt(oobContent.split("<hours>")[1].split("</hours>")[0]);
+                if (oobContent.contains("<minutes>")) {
+                    int minutes = Integer.parseInt(oobContent.split("<minutes>")[1].split("</minutes>")[0]);
+                    Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                            .putExtra(AlarmClock.EXTRA_HOUR, hours)
+                            .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
+                    callingActivity.startActivity(intent);
+                }
+            }
+        }
 
         // request to launch an app
         if (oobContent.contains("<launch>")) { //lance
