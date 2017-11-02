@@ -22,6 +22,7 @@
 
 package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.chatBot;
 
+import android.content.ActivityNotFoundException;
 import android.provider.AlarmClock;
 import android.provider.Settings.Secure;
 
@@ -262,6 +263,7 @@ public class ChatBot implements XMLAsyncResponse {
 
         // request to add an alarm clock
         if (oobContent.contains("<alarmclock>")) {
+            Log.i(LOGTAG, "return with alarmclock");
             if (oobContent.contains("<hours>")) {
                 int hours = Integer.parseInt(oobContent.split("<hours>")[1].split("</hours>")[0]);
                 if (oobContent.contains("<minutes>")) {
@@ -269,7 +271,23 @@ public class ChatBot implements XMLAsyncResponse {
                     Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
                             .putExtra(AlarmClock.EXTRA_HOUR, hours)
                             .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
+                    Log.i(LOGTAG, "with <hours> : hours = " + hours + "minutes = " + minutes);
                     callingActivity.startActivity(intent);
+                }
+            }
+            else {
+                int hours = Integer.parseInt(oobContent.split("<alarmclock>")[1].split("h")[0]);
+                int minutes = Integer.parseInt(oobContent.split("h")[1].split("</alarmclock>")[0]);
+                Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                        .putExtra(AlarmClock.EXTRA_HOUR, hours)
+                        .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
+                Log.i(LOGTAG, "hours = " + hours + "minutes = " + minutes);
+                try {
+                    callingActivity.startActivity(intent);
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                    Log.i(LOGTAG, "Exception calling activity : \n" + e.getStackTrace().toString());
                 }
             }
         }
