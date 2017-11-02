@@ -141,7 +141,8 @@ public class ChatBot implements XMLAsyncResponse {
 
         String fullQuery;
         // insert %20 for spaces in query
-        query = query.replaceAll(" ", "%20");
+        //query = query.replaceAll(" ", "%20");
+        query = query.replaceAll(" ", "+");
         //Uses AIML files from A.L.I.C.E
         fullQuery = "https://www.pandorabots.com/pandora/talk-xml?input=" + query + "&botid=" + id + "&custid=" + android_id;
         Log.i(LOGTAG, "Query to pandorabots: " + fullQuery);
