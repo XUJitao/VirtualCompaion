@@ -28,9 +28,13 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.chatBot;
         import java.io.InputStreamReader;
         import java.net.HttpURLConnection;
         import java.net.URL;
+        import java.net.URLEncoder;
+        import java.nio.charset.Charset;
 
         import android.os.AsyncTask;
         import android.util.Log;
+
+        import javax.net.ssl.HttpsURLConnection;
 
         import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
@@ -76,11 +80,18 @@ public class RetrieveXMLTask extends AsyncTask<String, Void, String> {
         String result=null;
 
         URL url=null;
-        HttpURLConnection connection=null;
+        HttpsURLConnection connection=null;
 
         try {
+            urlString = URLEncoder.encode(urlString, "UTF-8");
+            urlString = urlString.replaceAll("%3A", ":");
+            urlString = urlString.replaceAll("%2F", "/");
+            urlString = urlString.replaceAll("%3F", "?");
+            urlString = urlString.replaceAll("%3D", "=");
+            urlString = urlString.replaceAll("%26", "&");
             url = new URL(urlString);
-            connection = (HttpURLConnection) url.openConnection();
+            Log.i(LOGTAG,"url is : " + url.toString());
+            connection = (HttpsURLConnection) url.openConnection();
             Log.i(LOGTAG, "Connection opened successfully");
             connection.setAllowUserInteraction(false);
             connection.setInstanceFollowRedirects(true);
@@ -109,6 +120,8 @@ public class RetrieveXMLTask extends AsyncTask<String, Void, String> {
         }
         catch (Exception ex)
         {
+            Log.i(LOGTAG,"############################################################");
+            ex.printStackTrace();
             exception = ex;
         }
 
@@ -127,8 +140,8 @@ public class RetrieveXMLTask extends AsyncTask<String, Void, String> {
             throw new IOException("InputStream could not be read (in==null)");
         }
 
-        //Charset inputCharset = Charset.forName("ISO-8859-1");
-        BufferedReader bufRead = new BufferedReader(new InputStreamReader(in));
+        Charset inputCharset = Charset.forName("UTF-8");
+        BufferedReader bufRead = new BufferedReader(new InputStreamReader(in,inputCharset));
         StringBuilder text = new StringBuilder();
         String line;
 
