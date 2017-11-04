@@ -518,7 +518,9 @@ public class ChatBot implements XMLAsyncResponse {
      */
     private void addAnAlarm(String oobContent) {
         int hours = Integer.parseInt(oobContent.split("<add>")[1].split("h")[0]);
-        int minutes = Integer.parseInt(oobContent.split("h")[1].split("</add>")[0]);
+        String minu = oobContent.split("h")[1].split("</add>")[0];
+        int minutes = minu.length() == 0 ? 0 : Integer.parseInt(minu);
+        Log.i(LOGTAG, "minutes= " + minutes);
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
                 .putExtra(AlarmClock.EXTRA_HOUR, hours)
                 .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
