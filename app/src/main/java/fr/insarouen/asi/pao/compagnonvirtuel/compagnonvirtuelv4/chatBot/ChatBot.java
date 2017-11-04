@@ -266,7 +266,12 @@ public class ChatBot implements XMLAsyncResponse {
 
         // request to add an alarm clock
         if (oobContent.contains("<alarmclock>")) {
-            setAnAlarm(oobContent);
+            if(oobContent.contains("<add>")) {
+                addAnAlarm(oobContent);
+            }
+            else if (oobContent.contains("<delete>")){
+                deleteAnAlarm(oobContent);
+            }
         }
 
         // request to launch an app
@@ -507,13 +512,13 @@ public class ChatBot implements XMLAsyncResponse {
     }
 
     /**
-     * set an alarm
+     * add an alarm
      *
      * @param oobContent time to set an alarm
      */
-    private void setAnAlarm(String oobContent) {
-        int hours = Integer.parseInt(oobContent.split("<alarmclock>")[1].split("h")[0]);
-        int minutes = Integer.parseInt(oobContent.split("h")[1].split("</alarmclock>")[0]);
+    private void addAnAlarm(String oobContent) {
+        int hours = Integer.parseInt(oobContent.split("<add>")[1].split("h")[0]);
+        int minutes = Integer.parseInt(oobContent.split("h")[1].split("</add>")[0]);
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
                 .putExtra(AlarmClock.EXTRA_HOUR, hours)
                 .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
@@ -540,5 +545,19 @@ public class ChatBot implements XMLAsyncResponse {
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    /**
+     * delete an alarm
+     *
+     * @param oobContent time to set an alarm
+     */
+    private void deleteAnAlarm(String oobContent) {
+        int hours = Integer.parseInt(oobContent.split("<delete>")[1].split("h")[0]);
+        int minutes = Integer.parseInt(oobContent.split("h")[1].split("</delete>")[0]);
+        Intent intent = new Intent(AlarmClock.ACTION_DISMISS_ALARM)
+                .putExtra(AlarmClock.EXTRA_HOUR, hours)
+                .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
+        callingActivity.startActivity(intent);
     }
 }
