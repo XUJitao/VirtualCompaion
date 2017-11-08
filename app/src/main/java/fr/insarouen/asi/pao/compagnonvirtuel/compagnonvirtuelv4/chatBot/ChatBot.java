@@ -28,6 +28,7 @@ import android.provider.Settings.Secure;
 
 import java.io.StringReader;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -56,6 +57,7 @@ import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.MainActivity;
 import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.ToolManager;
 
 import static android.os.Build.VERSION_CODES.M;
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 import static java.net.Proxy.Type.HTTP;
 
 /**
@@ -264,32 +266,11 @@ public class ChatBot implements XMLAsyncResponse {
 
         // request to add an alarm clock
         if (oobContent.contains("<alarmclock>")) {
-            Log.i(LOGTAG, "return with alarmclock");
-            if (oobContent.contains("<hours>")) {
-                int hours = Integer.parseInt(oobContent.split("<hours>")[1].split("</hours>")[0]);
-                if (oobContent.contains("<minutes>")) {
-                    int minutes = Integer.parseInt(oobContent.split("<minutes>")[1].split("</minutes>")[0]);
-                    Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
-                            .putExtra(AlarmClock.EXTRA_HOUR, hours)
-                            .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
-                    Log.i(LOGTAG, "with <hours> : hours = " + hours + "minutes = " + minutes);
-                    callingActivity.startActivity(intent);
-                }
+            if(oobContent.contains("<add>")) {
+                addAnAlarm(oobContent);
             }
-            else {
-                int hours = Integer.parseInt(oobContent.split("<alarmclock>")[1].split("h")[0]);
-                int minutes = Integer.parseInt(oobContent.split("h")[1].split("</alarmclock>")[0]);
-                Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
-                        .putExtra(AlarmClock.EXTRA_HOUR, hours)
-                        .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
-                Log.i(LOGTAG, "hours = " + hours + "minutes = " + minutes);
-                try {
-                    callingActivity.startActivity(intent);
-                }
-                catch(Exception e){
-                    e.printStackTrace();
-                    Log.i(LOGTAG, "Exception calling activity : \n" + e.getStackTrace().toString());
-                }
+            else if (oobContent.contains("<delete>")){
+                deleteAnAlarm(oobContent);
             }
         }
 
@@ -303,143 +284,21 @@ public class ChatBot implements XMLAsyncResponse {
         // request to send sms
         if (oobContent.contains("<send>")) { //'envoyer' or 'envoie'
             if (oobContent.contains("<people>")) {
-                String sendSmsTo = oobContent.split("<people>")[1].split("</people>")[0];
-                if (!Character.isLetter(sendSmsTo.charAt(0))) {
-                    if (oobContent.contains("<message>")) {
-                        String smsContent = oobContent.split("<message>")[1].split("</message>")[0];
-                        Log.d(LOGTAG, "send sms to" + sendSmsTo + " for " + smsContent);
-                        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + sendSmsTo));
-                        intent.setData(Uri.parse("sms_body" + smsContent));
-                        callingActivity.startActivity(intent);
-                    }
-                } else {
-                    Cursor c = callingActivity.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-                    String name, number = "";
-                    String numberToSendSms = "";
-                    String id;
-                    c.moveToFirst();
-                    boolean trouve = false;
-                    while (!trouve) {
-                        if (c.getString(0) != null) {
-
-
-                            name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                            id = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
-                            if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-                                Cursor pCur = callingActivity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id},
-                                        null);
-                                while (pCur.moveToNext()) {
-                                    number = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                                }
-                                pCur.close();
-                            }
-
-
-                            String[] words = (oobContent.split("<people>")[1].split("</people>")[0]).split(" ");
-                            StringBuilder sb = new StringBuilder();
-                            if (words[0].length() > 0) {
-                                sb.append(Character.toUpperCase(words[0].charAt(0)) + words[0].subSequence(1, words[0].length()).toString().toLowerCase());
-                                for (int j = 1; j < words.length; j++) {
-                                    sb.append(" ");
-                                    sb.append(Character.toUpperCase(words[j].charAt(0)) + words[j].subSequence(1, words[j].length()).toString().toLowerCase());
-                                }
-                            }
-                            String nom = sb.toString();
-
-                            if (name.equals(nom)) {
-                                numberToSendSms = number;
-                                trouve = true;
-                            }
-                        }
-                        c.moveToNext();
-                    }
-
-                    c.close();
-
-
-                    if (oobContent.contains("<message>")) {
-                        String smsContent = oobContent.split("<message>")[1].split("</message>")[0];
-                        Log.d(LOGTAG, "send sms to " + sendSmsTo + " to say " + smsContent);
-                        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + numberToSendSms));
-                        intent.putExtra("sms_body", smsContent);
-                        callingActivity.startActivity(intent);
-                    }
-                }
+                sendSMS(oobContent);
             }
         }
 
         // request to search a place in the map
         if (oobContent.contains("<maps>")) { // 'googlemap'
             String address = oobContent.split("<maps>")[1].split("</maps>")[0];
-            address = "geo:0,0?q=" + address;
-            address.replace(" ", "+");
-            Uri uriAddress = Uri.parse(address);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(uriAddress);
-            callingActivity.startActivity(intent);
+            launchGoogleMap(address);
         }
 
         // request to launch phone
         //appelle
         if (oobContent.contains("<phone>")) {
             if (oobContent.contains("<people>")) {
-                String a_appeller = oobContent.split("<people>")[1].split("</people>")[0];
-                if (!Character.isLetter(a_appeller.charAt(0))) {
-                    Log.d(LOGTAG, "phone |" + oobContent);
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + a_appeller));
-                    callingActivity.startActivity(intent);
-                } else {
-                    Cursor c = callingActivity.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-                    String name, number = "";
-                    String numberToCall = "";
-                    String id;
-                    c.moveToFirst();
-                    boolean trouve = false;
-                    while (!trouve) {
-                        if (c.getString(0) != null) {
-
-
-                            name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                            id = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
-                            if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-                                Cursor pCur = callingActivity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id},
-                                        null);
-                                while (pCur.moveToNext()) {
-                                    number = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                                }
-                                pCur.close();
-                            }
-
-
-                            String[] words = (oobContent.split("<people>")[1].split("</people>")[0]).split(" ");
-                            StringBuilder sb = new StringBuilder();
-                            if (words[0].length() > 0) {
-                                sb.append(Character.toUpperCase(words[0].charAt(0)) + words[0].subSequence(1, words[0].length()).toString().toLowerCase());
-                                for (int j = 1; j < words.length; j++) {
-                                    sb.append(" ");
-                                    sb.append(Character.toUpperCase(words[j].charAt(0)) + words[j].subSequence(1, words[j].length()).toString().toLowerCase());
-                                }
-                            }
-                            String nom = sb.toString();
-
-                            if (name.equals(nom)) {
-                                numberToCall = number;
-                                trouve = true;
-                            }
-                        }
-                        c.moveToNext();
-                    }
-
-                    c.close();
-
-
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + numberToCall));
-                    callingActivity.startActivity(intent);
-
-                }
-
+                makePhoneCall(oobContent);
             }
         }
 
@@ -457,6 +316,8 @@ public class ChatBot implements XMLAsyncResponse {
 
     /**
      * Performs a Google search query. The value of specialized topic is appended to words in query
+     *
+     * @param googleSearchText The text to search
      */
     private void googleQuery(String googleSearchText) {
         // insert + for spaces in query
@@ -508,4 +369,197 @@ public class ChatBot implements XMLAsyncResponse {
         callingActivity.startActivity(browserIntent);
     }
 
+    /**
+     * Launches Google Map
+     *
+     * @param address address to search
+     */
+    private void launchGoogleMap(String address) {
+        address = "geo:0,0?q=" + address;
+        address.replace(" ", "+");
+        Uri uriAddress = Uri.parse(address);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(uriAddress);
+        callingActivity.startActivity(intent);
+    }
+
+    /**
+     * Send SMS
+     *
+     * @param oobContent information about people to send and content
+     */
+    private void sendSMS(String oobContent) {
+        String a_appeller = oobContent.split("<people>")[1].split("</people>")[0];
+        if (!Character.isLetter(a_appeller.charAt(0))) {
+            Log.d(LOGTAG, "phone |" + oobContent);
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + a_appeller));
+            callingActivity.startActivity(intent);
+        } else {
+            Cursor c = callingActivity.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+            String name, number = "";
+            String numberToCall = "";
+            String id;
+            c.moveToFirst();
+            boolean trouve = false;
+            while (!trouve) {
+                if (c.getString(0) != null) {
+
+
+                    name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                    id = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
+                    if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                        Cursor pCur = callingActivity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id},
+                                null);
+                        while (pCur.moveToNext()) {
+                            number = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        }
+                        pCur.close();
+                    }
+
+
+                    String[] words = (oobContent.split("<people>")[1].split("</people>")[0]).split(" ");
+                    StringBuilder sb = new StringBuilder();
+                    if (words[0].length() > 0) {
+                        sb.append(Character.toUpperCase(words[0].charAt(0)) + words[0].subSequence(1, words[0].length()).toString().toLowerCase());
+                        for (int j = 1; j < words.length; j++) {
+                            sb.append(" ");
+                            sb.append(Character.toUpperCase(words[j].charAt(0)) + words[j].subSequence(1, words[j].length()).toString().toLowerCase());
+                        }
+                    }
+                    String nom = sb.toString();
+
+                    if (name.equals(nom)) {
+                        numberToCall = number;
+                        trouve = true;
+                    }
+                }
+                c.moveToNext();
+            }
+
+            c.close();
+
+
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + numberToCall));
+            callingActivity.startActivity(intent);
+
+        }
+    }
+
+    /**
+     * make phone call
+     *
+     * @param oobContent names or phone number to call
+     */
+    private void makePhoneCall(String oobContent) {
+        String a_appeller = oobContent.split("<people>")[1].split("</people>")[0];
+        if (!Character.isLetter(a_appeller.charAt(0))) {
+            Log.d(LOGTAG, "phone |" + oobContent);
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + a_appeller));
+            callingActivity.startActivity(intent);
+        } else {
+            Cursor c = callingActivity.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+            String name, number = "";
+            String numberToCall = "";
+            String id;
+            c.moveToFirst();
+            boolean trouve = false;
+            while (!trouve) {
+                if (c.getString(0) != null) {
+
+
+                    name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                    id = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
+                    if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                        Cursor pCur = callingActivity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id},
+                                null);
+                        while (pCur.moveToNext()) {
+                            number = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        }
+                        pCur.close();
+                    }
+
+
+                    String[] words = (oobContent.split("<people>")[1].split("</people>")[0]).split(" ");
+                    StringBuilder sb = new StringBuilder();
+                    if (words[0].length() > 0) {
+                        sb.append(Character.toUpperCase(words[0].charAt(0)) + words[0].subSequence(1, words[0].length()).toString().toLowerCase());
+                        for (int j = 1; j < words.length; j++) {
+                            sb.append(" ");
+                            sb.append(Character.toUpperCase(words[j].charAt(0)) + words[j].subSequence(1, words[j].length()).toString().toLowerCase());
+                        }
+                    }
+                    String nom = sb.toString();
+
+                    if (name.equals(nom)) {
+                        numberToCall = number;
+                        trouve = true;
+                    }
+                }
+                c.moveToNext();
+            }
+
+            c.close();
+
+
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + numberToCall));
+            callingActivity.startActivity(intent);
+
+        }
+    }
+
+    /**
+     * add an alarm
+     *
+     * @param oobContent time to set an alarm
+     */
+    private void addAnAlarm(String oobContent) {
+        int hours = Integer.parseInt(oobContent.split("<add>")[1].split("h")[0]);
+        String minu = oobContent.split("h")[1].split("</add>")[0];
+        int minutes = minu.length() == 0 ? 0 : Integer.parseInt(minu);
+        Log.i(LOGTAG, "minutes= " + minutes);
+        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                .putExtra(AlarmClock.EXTRA_HOUR, hours)
+                .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
+        if(oobContent.contains("<repetition>")){
+            String days = oobContent.split("<repetition>")[1].split("</repetition>")[0];
+            ArrayList<Integer> daysNumber = new ArrayList<>();
+            if(days.contains("jours")) {
+                for (int i = 1; i <= 7; i++)
+                    daysNumber.add(i);
+            } else {
+                if (days.contains("dimanche")) daysNumber.add(1);
+                if (days.contains("lundi")) daysNumber.add(2);
+                if (days.contains("mardi")) daysNumber.add(3);
+                if (days.contains("mercredi")) daysNumber.add(4);
+                if (days.contains("jeudi")) daysNumber.add(5);
+                if (days.contains("vendredi")) daysNumber.add(6);
+                if (days.contains("samedi")) daysNumber.add(7);
+            }
+            intent.putExtra(AlarmClock.EXTRA_DAYS,daysNumber);
+        }
+        try {
+            callingActivity.startActivity(intent);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * delete an alarm
+     *
+     * @param oobContent time to set an alarm
+     */
+    private void deleteAnAlarm(String oobContent) {
+        int hours = Integer.parseInt(oobContent.split("<delete>")[1].split("h")[0]);
+        int minutes = Integer.parseInt(oobContent.split("h")[1].split("</delete>")[0]);
+        Intent intent = new Intent(AlarmClock.ACTION_DISMISS_ALARM)
+                .putExtra(AlarmClock.EXTRA_HOUR, hours)
+                .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
+        callingActivity.startActivity(intent);
+    }
 }
