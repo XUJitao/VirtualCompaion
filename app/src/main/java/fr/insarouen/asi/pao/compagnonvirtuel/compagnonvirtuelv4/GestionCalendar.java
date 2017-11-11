@@ -233,7 +233,7 @@ public class GestionCalendar {
      * @param beginTime la date de debut du rdv
      * @param endTime la date de fin du rdv
      * */
-    private void ajouterRDV(String titre, Calendar beginTime, Calendar endTime) {
+    public void ajouterRDV(String titre, Calendar beginTime, Calendar endTime) {
         long startMillis = beginTime.getTimeInMillis();
         long endMillis = endTime.getTimeInMillis();
 

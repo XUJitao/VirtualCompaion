@@ -234,7 +234,7 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
      * */
     public void makeAnswer(String bestRecognitionResult){
 
-        if (findMotCleCalendar(bestRecognitionResult)){
+       /* if (findMotCleCalendar(bestRecognitionResult)){
             // cas d'une requete portant sur le calendrier , on court circuite le chatBot
             GestionCalendar Gcal=new GestionCalendar(callingActivity.getApplicationContext());
             int errorRequeteCalendar =Gcal.traiterRequete(bestRecognitionResult);
@@ -252,9 +252,9 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
             }
             //penser a mettre des toaster
         }else {
-
+            */
             bot.initiateQuery(bestRecognitionResult);
-        }
+        //}
     }
     /**
      * Méthode qui permet de definir si une requete concerne le calendrier ou pas (afin de court circuiter le chatbot pour la traiter).
