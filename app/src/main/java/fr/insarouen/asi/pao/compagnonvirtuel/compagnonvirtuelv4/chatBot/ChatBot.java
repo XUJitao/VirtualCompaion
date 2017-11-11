@@ -65,6 +65,7 @@ import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.ToolManager;
 
 import static android.os.Build.VERSION_CODES.M;
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
+import static android.webkit.ConsoleMessage.MessageLevel.WARNING;
 import static java.net.Proxy.Type.HTTP;
 
 /**
@@ -321,61 +322,80 @@ public class ChatBot implements XMLAsyncResponse {
         }
 
         // request to add an event in calendar
-        if (oobContent.contains("<addappointment>")) {
-            String date = oobContent.split("<eventdate>")[1].split("</eventdate>")[0];
-            Log.i(LOGTAG,"addEvent: " + date);
-            int day,month,year,hour,minute;
-            day = month = year = hour = minute = 0;
-            try {
-                day = Integer.parseInt(date.split(" ")[0]);
-            }
-            catch (Exception e) {
-                day = Integer.parseInt(date);
-            }
-            HashMap<String,Integer> months = new HashMap<>();
-            months.put("janvier",0);
-            months.put("février",1);
-            months.put("mars", 2);
-            months.put("avril",3);
-            months.put("mai",4);
-            months.put("juin",5);
-            months.put("juillet",6);
-            months.put("août",7);
-            months.put("septembre",8);
-            months.put("octobre",9);
-            months.put("novembre",10);
-            months.put("décembre",11);
-            try {
-                month = months.get(date.split(" ")[1]);
-            }
-            catch (Exception e) {
-                month = 0;
-            }
-            try {
-                year = Integer.parseInt(date.split(" ")[2]);
-            }
-            catch (Exception e) {
-                year = 0;
-            }
-            Log.i(LOGTAG,"sssssssssssssssssssssssssssssssssssssss");
-            Log.i(LOGTAG,"dates: " + day + " " + month + " " + year);
+        if (oobContent.contains("<appointment>")) {
+            if(oobContent.contains("<add>")) {
+                String date = oobContent.split("<eventdate>")[1].split("</eventdate>")[0];
+                Log.i(LOGTAG, "addEvent: " + date);
+                String title = "";
+                int day, month, year, hour, minute;
+                day = month = year = hour = minute = 0;
+                int i = 0;
+
+                long timeStamp = System.currentTimeMillis();
+
+                GestionCalendar Gcal = new GestionCalendar(callingActivity.getApplicationContext());
+                Calendar beginTime = Calendar.getInstance();
+                beginTime.setTimeInMillis(timeStamp);
+                String[] words = date.split(" ");
+                String sDay = words.length == 0 ? date : words[i];
+                try {
+                    day = Integer.parseInt(sDay);
+                    i++;
+                }
+                catch (Exception e) {
+                    day = beginTime.get(Calendar.DAY_OF_MONTH);
+                }
+
+                HashMap<String, Integer> months = new HashMap<>();
+                months.put("janvier", 0);
+                months.put("février", 1);
+                months.put("mars", 2);
+                months.put("avril", 3);
+                months.put("mai", 4);
+                months.put("juin", 5);
+                months.put("juillet", 6);
+                months.put("août", 7);
+                months.put("septembre", 8);
+                months.put("octobre", 9);
+                months.put("novembre", 10);
+                months.put("décembre", 11);
+                try {
+                    month = months.get(words[i]);
+                    i++;
+                } catch (Exception e) {
+                    month = beginTime.get(Calendar.MONTH);
+                }
+                try {
+                    year = Integer.parseInt(words[i]);
+                    i++;
+                } catch (Exception e) {
+                    year = beginTime.get(Calendar.YEAR);
+                }
 
 
-            long timeStamp = System.currentTimeMillis();
-
-            GestionCalendar Gcal=new GestionCalendar(callingActivity.getApplicationContext());
-            Calendar beginTime = Calendar.getInstance();
-            beginTime.setTimeInMillis(timeStamp);
-            if(!(day > 0)) day = beginTime.get(Calendar.DAY_OF_MONTH);
-            if(!(month > 0)) month = beginTime.get(Calendar.MONTH);
-            if(!(year > 0)) year = beginTime.get(Calendar.YEAR);
-            hour = beginTime.get(Calendar.HOUR_OF_DAY);
-            minute = beginTime.get(Calendar.MINUTE);
-            beginTime.set(year,month,day,hour,minute);
-            Calendar endTime = Calendar.getInstance();
-            endTime.set(year,month,day,hour,minute);
-            Log.i(LOGTAG,"eventDate: " + day + " " + month + " " + year);
-            Gcal.ajouterRDV("tttttttttttt",beginTime,endTime);
+                if(oobContent.contains("<eventtime>")) {
+                    String time = oobContent.split("<eventtime>")[1].split("</eventtime>")[0];
+                    String[] hr = time.split("h");
+                    hour = Integer.parseInt(hr[0]);
+                    minute = hr.length > 1 ? Integer.parseInt(hr[1]) : 0;
+                    if(oobContent.contains("<event>")) {
+                        title = oobContent.split("<event>")[1].split("</event>")[0];
+                    }
+                    else title = oobContent.split("</eventtime>")[1].split("</add>")[0];
+                }
+                else {
+                    hour = beginTime.get(Calendar.HOUR_OF_DAY);
+                    minute = beginTime.get(Calendar.MINUTE);
+                    if (i < words.length) {
+                        title = date.substring(date.indexOf(words[i]));
+                    }
+                }
+                beginTime.set(year, month, day, hour, minute);
+                Calendar endTime = Calendar.getInstance();
+                endTime.set(year, month, day, hour, minute);
+                Log.i(LOGTAG, "eventDate: " + day + " " + month + " " + year);
+                Gcal.ajouterRDV(title, beginTime, endTime);
+            }
         }
     }
 
