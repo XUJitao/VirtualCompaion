@@ -257,7 +257,7 @@ public class GestionCalendar {
      * @param beginDate la date de debut de recherche du rdv a supprimer
      * @param endDate la date de fin de recherche du rdv a supprimer
      * */
-    private void supprimerRDV(String titre, Calendar beginDate,Calendar endDate){
+    public void supprimerRDV(String titre, Calendar beginDate,Calendar endDate){
         Cursor cursor =getEvents();
         long beginMillis=beginDate.getTimeInMillis();
         long endMillis=endDate.getTimeInMillis();
