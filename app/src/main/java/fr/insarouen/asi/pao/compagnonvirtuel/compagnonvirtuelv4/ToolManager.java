@@ -13,9 +13,11 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4;
         import android.database.Cursor;
         import android.os.Handler;
         import android.os.Looper;
+        import android.util.Log;
         import android.view.View;
         import android.widget.TextView;
         import android.widget.Toast;
+
         import java.util.ArrayList;
         import java.util.Date;
         import java.util.Observable;
@@ -28,6 +30,8 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4;
 
 
 public class ToolManager extends Observable implements View.OnClickListener, Observer {
+
+    private static final String LOGTAG = "DEBUG";
 
     /**
      * L'activité qui instancie le toolManager, sur laquelle se trouve le compagnon virtuel.
@@ -346,17 +350,29 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
         Context context = callingActivity.getApplicationContext();
         GestionCalendar gc = new GestionCalendar(context);
         Cursor cursor = gc.getEvents();
+        cursor.moveToFirst();
         int eventNumber = cursor.getCount();
+
+
         if (eventNumber > 0) {
-            long beginMillis = cursor.getLong(3);
-            long endMillis = cursor.getLong(4);
-            String eventTitle = cursor.getString(1);
-            Date startDate = new Date(beginMillis);
-            Date endDate = new Date(endMillis);
-            StringBuilder sb = new StringBuilder();
-            sb.append(eventTitle + "\n");
-            sb.append(startDate + " ~ " + endDate);
-            return sb.toString();
+            Log.i(LOGTAG,"eeeeeeeeeeeeeeeeeeeeeeeee");
+            try {
+                long beginMillis = cursor.getLong(3);
+                long endMillis = cursor.getLong(4);
+                String eventTitle = cursor.getString(1);
+                Date startDate = new Date(beginMillis);
+                Date endDate = new Date(endMillis);
+                StringBuilder sb = new StringBuilder();
+                sb.append(eventTitle + "\n");
+                sb.append(startDate + " ~ " + endDate);
+                Log.i(LOGTAG, "nextEvent: " + sb.toString());
+                return sb.toString();
+            }
+            catch (Exception e) {
+                Log.i(LOGTAG, "nextevent exception ##################################");
+                e.printStackTrace();
+                return null;
+            }
         }
         return null;
     }
