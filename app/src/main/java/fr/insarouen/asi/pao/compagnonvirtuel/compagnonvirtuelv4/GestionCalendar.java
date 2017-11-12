@@ -215,7 +215,7 @@ public class GestionCalendar {
      * Méthode qui permet de récuperer les evenements du calendrier
      * @return cursor itérant sur les evenements du calendrier
      * */
-    private Cursor getEvents() {
+    public Cursor getEvents() {
         String[] projectionEvent = new String[]{"calendar_id", "title", "description",
                 "dtstart", "dtend", "eventLocation", "_id"};
 
@@ -263,7 +263,7 @@ public class GestionCalendar {
         long endMillis=endDate.getTimeInMillis();
         cursor.moveToFirst();
         for (int i = 0;i< cursor.getCount();i++){
-            if ((cursor.getLong(0)==IDCalendrier)&&(Objects.equals(cursor.getString(1), titre))&&(cursor.getLong(3)>beginMillis)&&(cursor.getLong(3)<endMillis)) {
+            if ((cursor.getLong(0)==IDCalendrier)&&(Objects.equals(cursor.getString(1), titre))&&(cursor.getLong(3)>beginMillis)&&(cursor.getLong(4)<endMillis)) {
                 long eventID= cursor.getLong(6);
                 Uri deleteUri = null;
                 deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, eventID);

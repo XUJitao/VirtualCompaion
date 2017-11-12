@@ -9,12 +9,15 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4;
  */
 
         import android.app.Activity;
+        import android.content.Context;
+        import android.database.Cursor;
         import android.os.Handler;
         import android.os.Looper;
         import android.view.View;
         import android.widget.TextView;
         import android.widget.Toast;
         import java.util.ArrayList;
+        import java.util.Date;
         import java.util.Observable;
         import java.util.Observer;
 
@@ -154,6 +157,7 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
         answerToShow.append(answer);
         setRecognition(recognitionToShow.toString());
         setAnswerInTextView(answerToShow.toString());
+        setNextEvent();
         voiceSynthesis.toSpeak(answer);
     }
 
@@ -164,6 +168,7 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
         animerLePersonnage("erreur");
         voiceSynthesis.toSpeak(error);
         setAnswerInTextView(error);
+        setNextEvent();
     }
 
     /**
@@ -329,5 +334,31 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
         additionalAnimationNeeded = true;
     }
 
+    /**
+     * The method to get the next event in calendar and show it on screen.
+     */
+    public void setNextEvent() {
+        TextView mText = (TextView) callingActivity.findViewById(R.id.textView_next_event);
+        mText.setText(getNextEvent());
+    }
+
+    public String getNextEvent() {
+        Context context = callingActivity.getApplicationContext();
+        GestionCalendar gc = new GestionCalendar(context);
+        Cursor cursor = gc.getEvents();
+        int eventNumber = cursor.getCount();
+        if (eventNumber > 0) {
+            long beginMillis = cursor.getLong(3);
+            long endMillis = cursor.getLong(4);
+            String eventTitle = cursor.getString(1);
+            Date startDate = new Date(beginMillis);
+            Date endDate = new Date(endMillis);
+            StringBuilder sb = new StringBuilder();
+            sb.append(eventTitle + "\n");
+            sb.append(startDate + " ~ " + endDate);
+            return sb.toString();
+        }
+        return null;
+    }
 }
 

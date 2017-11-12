@@ -9,6 +9,7 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4;
         import android.os.Bundle;
         import android.view.View;
         import android.widget.Button;
+        import android.widget.TextView;
 
         import java.util.List;
 
@@ -35,7 +36,8 @@ public class MainActivity extends Activity {
 
 
         ToolManager toolManager = new ToolManager(this);
-
+        TextView nextEvent = (TextView) findViewById(R.id.textView_next_event);
+        nextEvent.setText(toolManager.getNextEvent());
         Button speakButton = (Button) findViewById(R.id.btn_launcher_recognition);
 
 
