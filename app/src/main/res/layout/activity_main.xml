@@ -20,22 +20,10 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_weight="1"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="6dp" />
-
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:firstDayOfWeek="1"
-            android:focusedMonthDateColor="@color/colorAccent"
-            android:selectedWeekBackgroundColor="@color/colorPrimaryDark"
-            android:shownWeekCount="5"
-            android:unfocusedMonthDateColor="#F9F"
-            android:weekSeparatorLineColor="@color/colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
