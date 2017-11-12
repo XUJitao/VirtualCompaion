@@ -520,16 +520,19 @@ public class ChatBot implements XMLAsyncResponse {
      * @param oobContent information about people to send and content
      */
     private void sendSMS(String oobContent) {
-        String a_appeller = oobContent.split("<people>")[1].split("</people>")[0];
-        if (!Character.isLetter(a_appeller.charAt(0))) {
-            Log.d(LOGTAG, "phone |" + oobContent);
-            Intent intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:" + a_appeller));
-            callingActivity.startActivity(intent);
+        String sendSmsTo = oobContent.split("<people>")[1].split("</people>")[0];
+        if (!Character.isLetter(sendSmsTo.charAt(0))) {
+            if (oobContent.contains("<message>")) {
+                String smsContent = oobContent.split("<message>")[1].split("</message>")[0];
+                Log.d(LOGTAG, "send sms to" + sendSmsTo + " for " + smsContent);
+                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + sendSmsTo));
+                intent.setData(Uri.parse("sms_body" + smsContent));
+                callingActivity.startActivity(intent);
+            }
         } else {
             Cursor c = callingActivity.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
             String name, number = "";
-            String numberToCall = "";
+            String numberToSendSms = "";
             String id;
             c.moveToFirst();
             boolean trouve = false;
@@ -561,7 +564,7 @@ public class ChatBot implements XMLAsyncResponse {
                     String nom = sb.toString();
 
                     if (name.equals(nom)) {
-                        numberToCall = number;
+                        numberToSendSms = number;
                         trouve = true;
                     }
                 }
@@ -571,10 +574,13 @@ public class ChatBot implements XMLAsyncResponse {
             c.close();
 
 
-            Intent intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:" + numberToCall));
-            callingActivity.startActivity(intent);
-
+            if (oobContent.contains("<message>")) {
+                String smsContent = oobContent.split("<message>")[1].split("</message>")[0];
+                Log.d(LOGTAG, "send sms to " + sendSmsTo + " to say " + smsContent);
+                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + numberToSendSms));
+                intent.putExtra("sms_body", smsContent);
+                callingActivity.startActivity(intent);
+            }
         }
     }
 
