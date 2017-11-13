@@ -18,8 +18,16 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import java.text.DateFormat;
+        import java.text.DecimalFormat;
+        import java.text.FieldPosition;
+        import java.text.ParsePosition;
+        import java.text.SimpleDateFormat;
         import java.util.ArrayList;
+        import java.util.Arrays;
+        import java.util.Calendar;
         import java.util.Date;
+        import java.util.Locale;
         import java.util.Observable;
         import java.util.Observer;
 
@@ -353,26 +361,42 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
         cursor.moveToFirst();
         int eventNumber = cursor.getCount();
 
-
         if (eventNumber > 0) {
-            Log.i(LOGTAG,"eeeeeeeeeeeeeeeeeeeeeeeee");
-            try {
-                long beginMillis = cursor.getLong(3);
-                long endMillis = cursor.getLong(4);
-                String eventTitle = cursor.getString(1);
-                Date startDate = new Date(beginMillis);
-                Date endDate = new Date(endMillis);
+                Log.i(LOGTAG, "eeeeeeeeeeeeeeeeeeeeeeeee");
                 StringBuilder sb = new StringBuilder();
-                sb.append(eventTitle + "\n");
-                sb.append(startDate + " ~ " + endDate);
-                Log.i(LOGTAG, "nextEvent: " + sb.toString());
-                return sb.toString();
-            }
-            catch (Exception e) {
-                Log.i(LOGTAG, "nextevent exception ##################################");
-                e.printStackTrace();
-                return null;
-            }
+                try {
+                    long[] eventsMillis = new long[eventNumber+10];
+                    int j = 0;
+                    do {
+                        eventsMillis[j++] = cursor.getLong(3);
+                    } while (cursor.moveToNext());
+                    Arrays.sort(eventsMillis);
+                    cursor.moveToFirst();
+                    int i = 0;
+                    while ( System.currentTimeMillis() >= eventsMillis[i]) {
+                        i++;
+                    }
+                    while ( cursor.getLong(3) != eventsMillis[i]) {
+                        cursor.moveToNext();
+                    }
+                    long endMillis = cursor.getLong(4);
+                    String eventTitle = cursor.getString(1);
+                    Date startDate = new Date(cursor.getLong(3));
+                    Date endDate = new Date(endMillis);
+                    SimpleDateFormat formatter = new SimpleDateFormat("d MMM yyyy, H:m", Locale.FRANCE);
+                    sb.append("L'événement plus proche:\n");
+                    sb.append(eventTitle + "\n");
+                    sb.append(formatter.format(startDate));
+                    sb.append("\n~\n");
+                    sb.append(formatter.format(endDate));
+                    Log.i(LOGTAG, "nextEvent: " + sb.toString());
+                } catch (Exception e) {
+                    Log.i(LOGTAG, "next event exception ##################################");
+                    e.printStackTrace();
+                    return null;
+                } finally {
+                    return sb.toString();
+                }
         }
         return null;
     }

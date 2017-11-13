@@ -324,17 +324,12 @@ public class ChatBot implements XMLAsyncResponse {
         // request to add an event in calendar
         if (oobContent.contains("<appointment>")) {
             GestionCalendar Gcal = new GestionCalendar(callingActivity.getApplicationContext());
-            if (oobContent.contains("<next>")) {
-                Gcal.prochainRDV();
+            if (oobContent.contains("<add>")) {
+                setAppointement(Gcal, oobContent, "</add>");
+            } else if (oobContent.contains("<delete>")) {
+                setAppointement(Gcal, oobContent, "</delete>");
             }
-            else {
-                if (oobContent.contains("<add>")) {
-                    setAppointement(Gcal,oobContent,"</add>");
-                }
-                else if (oobContent.contains("<delete>")) {
-                    setAppointement(Gcal,oobContent,"</delete>");
-                }
-            }
+            toolManager.setNextEvent();
         }
     }
 

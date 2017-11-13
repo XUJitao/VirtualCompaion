@@ -19,7 +19,7 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-    compileSdkVersion 23
+    compileSdkVersion 25
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4"
@@ -42,7 +42,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:+'
     compile 'com.google.android.gms:play-services-maps:11.0.4'
     testCompile 'junit:junit:4.12'
 }
