@@ -22,20 +22,15 @@
 
 package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.chatBot;
 
-import android.content.ActivityNotFoundException;
+
 import android.provider.AlarmClock;
 import android.provider.Settings.Secure;
 
 import java.io.StringReader;
-import java.net.URI;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -60,13 +55,7 @@ import android.util.Log;
 
 
 import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.GestionCalendar;
-import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.MainActivity;
 import fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.ToolManager;
-
-import static android.os.Build.VERSION_CODES.M;
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
-import static android.webkit.ConsoleMessage.MessageLevel.WARNING;
-import static java.net.Proxy.Type.HTTP;
 
 /**
  * Chatbot/VPA that uses the technology of Pandorabots to understand the user queries and provide information

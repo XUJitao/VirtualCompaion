@@ -250,40 +250,7 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
      * La méthode qui récupère une réponse à partir du meilleur résultat de la reconnaissance vocale.
      * */
     public void makeAnswer(String bestRecognitionResult){
-
-       /* if (findMotCleCalendar(bestRecognitionResult)){
-            // cas d'une requete portant sur le calendrier , on court circuite le chatBot
-            GestionCalendar Gcal=new GestionCalendar(callingActivity.getApplicationContext());
-            int errorRequeteCalendar =Gcal.traiterRequete(bestRecognitionResult);
-            switch (errorRequeteCalendar){
-                case 0 : setAnswer("La requète est incorrecte");// : elle doit etre de la forme Ajoute/supprime un rendez vous le JJ/mois/AAAA (à HHhMM si ajout), intituleDuRendezVous
-                    break;
-                case 1 : setAnswer("Action effectuée");
-                    break;
-                case 2 : setAnswer("La date est incorrecte");
-                    break;
-                case 3 : setAnswer(Gcal.prochainRDV());
-                    break;
-                default : setAnswer("j'ai rencontré une erreur inconnue , veuillez recommencer");
-
-            }
-            //penser a mettre des toaster
-        }else {
-            */
-            bot.initiateQuery(bestRecognitionResult);
-        //}
-    }
-    /**
-     * Méthode qui permet de definir si une requete concerne le calendrier ou pas (afin de court circuiter le chatbot pour la traiter).
-     * @param requete la requete recue par le compagnon
-     * @return true si la requete concerne la gestion de calendrier, false sinon
-     * */
-    private boolean findMotCleCalendar(String requete){
-        if ( (requete.contains("ajoute")&&requete.contains("rendez-vous"))
-                ||(requete.contains("supprime")&&requete.contains("rendez-vous"))
-                ||(requete.contains("prochain")&&requete.contains("rendez-vous")) ) {
-            return true;
-        }else return false;
+        bot.initiateQuery(bestRecognitionResult);
     }
 
     /**
@@ -354,6 +321,10 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
         mText.setText(getNextEvent());
     }
 
+    /**
+     * This method search all events in the calendar and return the first future event from now on.
+     * @return Next event
+     */
     public String getNextEvent() {
         Context context = callingActivity.getApplicationContext();
         GestionCalendar gc = new GestionCalendar(context);

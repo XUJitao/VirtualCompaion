@@ -44,7 +44,6 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.chatBot;
         import javax.net.ssl.HttpsURLConnection;
         import javax.net.ssl.SSLContext;
 
-        import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Asynchronous task to retrieve the XML code from an URL.
