@@ -18,14 +18,9 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4;
         import android.widget.TextView;
         import android.widget.Toast;
 
-        import java.text.DateFormat;
-        import java.text.DecimalFormat;
-        import java.text.FieldPosition;
-        import java.text.ParsePosition;
         import java.text.SimpleDateFormat;
         import java.util.ArrayList;
         import java.util.Arrays;
-        import java.util.Calendar;
         import java.util.Date;
         import java.util.Locale;
         import java.util.Observable;
@@ -278,13 +273,13 @@ public class ToolManager extends Observable implements View.OnClickListener, Obs
      * @param requete la requete recue par le compagnon
      * @return true si la requete concerne la gestion de calendrier, false sinon
      * */
-    private boolean findMotCleCalendar(String requete){
-        if ( (requete.contains("ajoute")&&requete.contains("rendez-vous"))
-                ||(requete.contains("supprime")&&requete.contains("rendez-vous"))
-                ||(requete.contains("prochain")&&requete.contains("rendez-vous")) ) {
-            return true;
-        }else return false;
-    }
+//    private boolean findMotCleCalendar(String requete){
+//        if ( (requete.contains("ajoute")&&requete.contains("rendez-vous"))
+//                ||(requete.contains("supprime")&&requete.contains("rendez-vous"))
+//                ||(requete.contains("prochain")&&requete.contains("rendez-vous")) ) {
+//            return true;
+//        }else return false;
+//    }
 
     /**
      * La méthode qui permet de modifier le booléen isListening
