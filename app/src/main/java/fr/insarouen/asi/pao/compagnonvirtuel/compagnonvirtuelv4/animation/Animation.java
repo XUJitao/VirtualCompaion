@@ -12,7 +12,7 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.animation;
  *  @author Thibault PICARD, Lise QUESNEL, Alexandre LEVACHER
  *  @version 2.0
  */
-public class Animation {
+public class  Animation {
 
     /**
      * L'activité dans laquelle Animation est appelée
