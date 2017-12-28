@@ -30,11 +30,19 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4.chatBot;
         import java.net.URL;
         import java.net.URLEncoder;
         import java.nio.charset.Charset;
+        import java.security.NoSuchAlgorithmException;
 
+        import android.app.Activity;
+        import android.content.Context;
         import android.os.AsyncTask;
         import android.util.Log;
 
+        import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+        import com.google.android.gms.common.GooglePlayServicesRepairableException;
+        import com.google.android.gms.security.ProviderInstaller;
+
         import javax.net.ssl.HttpsURLConnection;
+        import javax.net.ssl.SSLContext;
 
         import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
@@ -64,6 +72,12 @@ public class RetrieveXMLTask extends AsyncTask<String, Void, String> {
      */
     public Exception exception = null;
 
+    private Activity activity;
+
+    public RetrieveXMLTask(Activity activity) {
+        this.activity = activity;
+    }
+
     /**
      * Writes a string with the contents of the file in the specified URL
      * Modified from the method with the same name in http://www.edumobile.org/android/android-programming-tutorials/data-fetching/
@@ -78,7 +92,7 @@ public class RetrieveXMLTask extends AsyncTask<String, Void, String> {
         InputStream in = null;
         int response = -1;
         String result=null;
-
+        initializeSSLContext(this.activity);
         URL url=null;
         HttpsURLConnection connection=null;
 
@@ -188,4 +202,23 @@ public class RetrieveXMLTask extends AsyncTask<String, Void, String> {
         return xml_contents;
     }
 
+
+    /**
+     * Initialize SSL
+     * @param mContext
+     */
+    public void initializeSSLContext(Context mContext){
+        try {
+            SSLContext.getInstance("TLSv1.2");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        try {
+            ProviderInstaller.installIfNeeded(mContext.getApplicationContext());
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
 }
