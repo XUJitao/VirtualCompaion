@@ -176,10 +176,11 @@ public class GestionCalendar {
                 Uri deleteUri = null;
                 deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, eventID);
                 context.getContentResolver().delete(deleteUri, null, null);
+                Toast.makeText(context, "Le rendez-vous a été supprimé", Toast.LENGTH_SHORT).show();
             }
             cursor.moveToNext();
         }
         cursor.close();
-        Toast.makeText(context, "Le rendez-vous a été supprimé", Toast.LENGTH_SHORT).show();
+
     }
 }
