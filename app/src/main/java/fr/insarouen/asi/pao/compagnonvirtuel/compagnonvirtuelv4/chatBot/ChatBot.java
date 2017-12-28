@@ -146,7 +146,7 @@ public class ChatBot implements XMLAsyncResponse {
      */
     public void initiateQuery(String query) {
 
-        RetrieveXMLTask retrieveXML = new RetrieveXMLTask();    //AsyncTask to retrieve the contents of the XML file fro mthe URL
+        RetrieveXMLTask retrieveXML = new RetrieveXMLTask(callingActivity);    //AsyncTask to retrieve the contents of the XML file fro mthe URL
         retrieveXML.delegate = this;    //It is crucial in order to retrieve the data from the asyncrhonous task (see the AsyncResponse and RetrieveXMLTask classes)
 
         String fullQuery;

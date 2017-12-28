@@ -13,10 +13,10 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
     signingConfigs {
         config {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            keyAlias 'MyAndroidPAOKey'
+            keyPassword 'alexandrepauchet'
+            storeFile file('/home/xujitao/Documents/keystores/android.jks')
+            storePassword 'alexandrepauchet'
         }
     }
     compileSdkVersion 25
@@ -24,7 +24,7 @@ android {
     defaultConfig {
         applicationId "fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4"
         minSdkVersion 19
-        targetSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
