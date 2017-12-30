@@ -7,7 +7,6 @@ package fr.insarouen.asi.pao.compagnonvirtuel.compagnonvirtuelv4;
         import android.content.pm.PackageManager;
         import android.speech.RecognizerIntent;
         import android.os.Bundle;
-        import android.view.View;
         import android.widget.Button;
         import android.widget.TextView;
 
@@ -30,16 +29,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Button button = (Button) findViewById(R.id.button);
-
-        //button.setOnClickListener(this);
-
-
         ToolManager toolManager = new ToolManager(this);
         TextView nextEvent = (TextView) findViewById(R.id.textView_next_event);
         nextEvent.setText(toolManager.getNextEvent());
         Button speakButton = (Button) findViewById(R.id.btn_launcher_recognition);
-
 
         speakButton.setOnClickListener(toolManager);
 
@@ -48,23 +41,6 @@ public class MainActivity extends Activity {
         }
 
     }
-
-    /**
-     * La méthode qui est appelée lorque l'utilisateur a appuyé sur le bouton démarrer.
-     * Dans un premier temps, on vérifie si il y a bien une application qui puisse gérer la reconnaissance vocale d'installé sur l'appareil de l'utilisateur.
-     * Puis, on vérifie si il y a bien une application qui puisse gérer la synthèse vocale d'installée sur l'appareil de l'utilisateur. Même démarche pour la synthèse vocale.
-     * */
-
-   /* @Override
-    public void onClick(View v) {
-        if (isSpeechRecognitionActivityPresented(this)) {
-            Intent intent = new Intent(MainActivity.this, ActionActivity.class);
-            MainActivity.this.startActivity(intent);
-        } else {
-            activateGoogle(this);
-        }
-
-    }*/
 
     /**
      * La méthode qui vérifie si il y a bien une application qui puisse gérer la reconnaissance vocale d'installé sur l'appareil de l'utilisateur.
