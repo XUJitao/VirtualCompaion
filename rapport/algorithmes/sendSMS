@@ -21,7 +21,7 @@ début
 				name <- CDC de la colonne de ContactsContract.Contacts.DISPLAY_NAME
 				id <- CDC de la colonne de ContactsContract.Contacts._ID
 				si ContactsContract.Contacts.HAS_PHONE_NUMBER est vrai
-					Cursor pCur <- callingActivity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " =?", new String[]{id}, null);
+					Cursor pCur <- callingActivity.getContentResolver().query(ContactsContract. CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " =?", new String[]{id}, null);
 					tant que pCur peut bouger à la suivante
 						number <- CDC de la colonne de ContactsContract.CommonDateKinds.Phone.NUMBER
 					fin tant que

@@ -1,0 +1,18 @@
+\section*{Chapitre 4}
+\section{Conception Détaillée}
+\indent Cette étape nous permet, à partir de conception préliminaire, de préciser l'algorithme des fonctions ou procédures principales.
+
+\subsection{addAnAlarme}
+	\lstinputlisting[caption=addAnAlarm]{addAnAlarm}
+
+\subsection{sendSMS}
+	\lstinputlisting[caption=sendSMS]{sendSMS}
+
+\subsection{setAppointement}
+	\lstinputlisting[caption=setAppointement]{setAppointement}
+
+\subsection{setBeginTimeAndGetTitle}
+	\lstinputlisting[caption=setBeginTimeAndGetTitle]{setBeginTimeAndGetTitle}
+	
+\subsection{getNextEvent}
+	\lstinputlisting[caption=getNextEvent]{getNextEvent}

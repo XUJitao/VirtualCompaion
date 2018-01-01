@@ -13,8 +13,13 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
 
 \lstset{
+	frame=tb,
 	inputencoding=utf8/latin1,
-	breaklines=true
+	breaklines=true,
+	showstringspaces=false,
+	columns=flexible,
+	tabsize=4,
+	breakatwhitespace=true
 }
 \begin{document} 
 
@@ -72,7 +77,6 @@ Alexandre \textsc{PAUCHET}
 \input{Chapitre3.tex}
 \input{Chapitre4.tex}
 
-\lstinputlisting[caption=calculation]{addAnAlarm.txt}
 
 
 
