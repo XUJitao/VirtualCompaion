@@ -13,10 +13,10 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
 
 \lstset{
-	frame=tb,
+	frame=single,
 	inputencoding=utf8/latin1,
 	breaklines=true,
-	showstringspaces=false,
+	showstringspaces=true,
 	columns=flexible,
 	tabsize=4,
 	breakatwhitespace=true
@@ -76,7 +76,7 @@ Alexandre \textsc{PAUCHET}
 \input{Chapitre2.tex}
 \input{Chapitre3.tex}
 \input{Chapitre4.tex}
-
+\input{Chapitre5.tex}
 
 
 

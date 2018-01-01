@@ -15,5 +15,6 @@
 \contentsline {subsection}{\numberline {4.1}addAnAlarme}{7}
 \contentsline {subsection}{\numberline {4.2}sendSMS}{8}
 \contentsline {subsection}{\numberline {4.3}setAppointement}{9}
-\contentsline {subsection}{\numberline {4.4}setBeginTimeAndGetTitle}{10}
-\contentsline {subsection}{\numberline {4.5}getNextEvent}{12}
+\contentsline {subsection}{\numberline {4.4}setBeginTimeAndGetTitle}{9}
+\contentsline {subsection}{\numberline {4.5}getNextEvent}{11}
+\contentsline {section}{\numberline {5}D\IeC {\'e}veloppememnt}{13}
