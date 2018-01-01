@@ -1,17 +1,36 @@
 \section*{Chapitre 5}
 \section{Développememnt}
-	La partie développement s'est déroulée en quatre sous parties. Tout d'abord, nous nous sommes informés des méthodes proposées sur Android pour mettre en place les fonctionnalités précisées dans le Chapitre 4. Ensuite nous avons ajouté plusieurs catégories de question/réponse sur le site Pandorabots pour faire fonctionner notre fonctionnalités. Enfin, nous avons modifié l'interface d'utilisateurs de l'application pour améliorer l'expérience d'utilisation. Ainsi, Nous avons changer le personnage animé pour afficher plus d'information sur l'activité principale. Ces quatre sous parties sont étés implémenter itérativement tout au long de développement.
+	La partie développement s'est déroulée en quatre sous parties. Tout d'abord, nous nous sommes informés des méthodes proposées sur Android pour mettre en place les fonctionnalités précisés dans le Chapitre 4. Ensuite nous avons ajouté plusieurs catégories de questions/réponses sur le site Pandorabots pour faire fonctionner nos fonctionnalités. Enfin, nous avons modifié l'interface d'utilisateurs de l'application pour améliorer l'expérience d'utilisation. Dans ce cas là, Nous avons changé le personnage d'animation pour afficher plus d'informations sur l'activité principale. Ces quatre sous parties ont été implémenté itérativement tout au long du développement.\\
 
-	\subsection{Mis en place des différentes foncitonnalités}
+\subsection{Mis en place des différentes foncitonnalités}
 	
-	Comme nous l'avons dit précédemment, nous avons suivi un cours sur \emph{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les foncition suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent.
+\indent Comme nous l'avons dit précédemment, nous avons suivi un cours sur \emph{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les foncition suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent. Les cinq premières fonctions ont été implémenté dans la classe Chatbot, les deux suivantes dans la classe ToolManager.\\
 
-	\subsubsection{Lancer Google Map}
+\subsubsection{Lancer Google Map}
 
-	Tout d'abord, selon notre recherche, toutes les chaînes de charactère transmises aux intentions Google Maps doivent être encodées sous forme d'URI. Dans notre fonction, il faut remplacer tous les espaces ' ' par "\%20" ou '+'. Nous avons choisi de les remplacer par '+'. Ensuite, nous avons créer un instance de \emph{Intent}, qui permet de lancer une application depuis l'activité actuelle. 
+\indent Premièrement, selon notre recherche, toutes les chaînes de charactère transmises aux intentions Google Maps doivent être encodées sous forme d'URI. Dans notre fonction, il faut remplacer tous les espaces ' ' par "\%20" ou '+'. Nous avons choisi de les remplacer par '+'. Ensuite, nous avons créé un instance de \emph{Intent}, qui permet de lancer une application depuis l'activité actuelle. \\
 
-	En effet, nous avions essayé de lancer la carte de Google Map dans notre application, néanmoins elle ne garde pas tous les fonctionnalité de l'application Google Map. Nous avons donc décidé de l'abandonner. Nous allons le préciser dans la chapitre 6.
+\indent En effet, nous avions essayé d'afficher la carte de Google Map dans notre application, néanmoins elle ne garde pas tous les fonctionnalité de l'application Google Map. Nous avons donc décidé de l'abandonner. Nous allons le préciser dans la chapitre 6.\\
 
-	\subsubsection{Envoyer SMS}
+\subsubsection{Envoyer SMS}
+\indent Nous proposons deux types de destination du sms : un numéro de téléphone mobile ou un correspondant dans le carnet d'adresses.  Pour les réaliser, il faut toujours déterminer le type de première caractère de destination. Si c'est une lettre, donc nous prenons le mode 'correspondant', sinon, nous prenons le mode 'numéro de téléphone mobile'. Grâce au instance \emph{Intent}, notre fonction pouvons lire le String qui décrit la destination du sms. \\
+
+\indent Si nous sommes tombé dans le deuxième mode, nous allons chercher le numéro de téléphone mobile dans le carnet d'adresses, et puis envoyer le sms par le numéro.\\
+
+\indent Pareil, nous écrivons le contenu du sms par l'instance \emph{Intent}.
 	
-	\subsubsection{Ajouter et Supprimer un réveil}
+\subsubsection{Ajouter et Supprimer un réveil}
+\indent Pour ajouter un réveil, simplement, nous déterminons la date et l'heure du réveil avec la reconnaissance du voix. Ensuite, nous utilisons toujours un instance de \emph{Intent} qui nous permet de réaliser l'ajout des informations pour un réveil. Après, c'est important de déterminer la répétition du réveil. Par différents chaines de caractères, nous trouvrons la demande de répétition d'utilisateur. Finalement, nous finisons l'ajout du réveil.\\
+
+\indent Pour supprimer un réveil, c'est plus simple. Nous cherchons la date et l'heure du réveil et le supprimer directement.\\
+
+\subsubsection{Gestion du rendez-vous}
+\indent Nous avons deux types des opérations dans cette fonction. Pour les deux opérations, nous déterminons d'abord les temps de commencer et terminer pour un rendez-vous, ensuite le titre du rendez-vous. Selon le type de l'opération, notre fonction va ajouter ou supprimer le rendez-vous dans le calendrier.\\
+
+\subsection{Ajout plusieurs catégories de questions/réponses sur le site Pandorabots}
+
+\subsection{Modification de l'interface d'utilisateur}
+
+
+\subsection{Changement du personnage}
+\indent Nous avons choisi un personnage d'animation de Microsoft qui est open source. Nous avons téléchargé l'ensemble d'image du personnage tout d'abord. Puis, nous avons utilisé l'outil pour le couper par chaque action. Pour différentes actions, nous avons proposé un temp de continu. Avec ces images, nous avons réalisé les animations  suivantes: saluer, écouter, trouver une  erreur, parler, rire, répondre, etc. Ce changement du personnage améliore notre l'interface d'utilisateur, de plus, il nous permet d'avoir plus d'espace sur l'écran pour afficher d'autres informations. Nous pensons que c'est un changement indispensable.
