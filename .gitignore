@@ -5,3 +5,8 @@
 .DS_Store
 /build
 /captures
+/rapport/*.aux
+/rapport/*.log
+/rapport/*.bak
+/rapport/*.synctex.gz
+/rapport/*.pdf
