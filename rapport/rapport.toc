@@ -7,11 +7,13 @@
 \contentsline {subsection}{\numberline {2.1}Faisabilit\IeC {\'e} du projet}{3}
 \contentsline {subsection}{\numberline {2.2}Analyse Descendante}{3}
 \contentsline {section}{\numberline {3}Conception Pr\IeC {\'e}liminaire}{4}
-\contentsline {subsection}{\numberline {3.1}Partie Chatbot}{4}
-\contentsline {subsection}{\numberline {3.2}Partie ToolManager}{4}
-\contentsline {section}{\numberline {4}Conception D\IeC {\'e}taill\IeC {\'e}e}{5}
-\contentsline {subsection}{\numberline {4.1}addAnAlarme}{5}
-\contentsline {subsection}{\numberline {4.2}sendSMS}{6}
-\contentsline {subsection}{\numberline {4.3}setAppointement}{7}
-\contentsline {subsection}{\numberline {4.4}setBeginTimeAndGetTitle}{7}
-\contentsline {subsection}{\numberline {4.5}getNextEvent}{9}
+\contentsline {subsection}{\numberline {3.1}Cas d'utilisation}{4}
+\contentsline {subsection}{\numberline {3.2}Diagrammes de Sequence}{4}
+\contentsline {subsection}{\numberline {3.3}Signatures Partie Chatbot}{5}
+\contentsline {subsection}{\numberline {3.4}Signatures Partie ToolManager}{5}
+\contentsline {section}{\numberline {4}Conception D\IeC {\'e}taill\IeC {\'e}e}{6}
+\contentsline {subsection}{\numberline {4.1}addAnAlarme}{6}
+\contentsline {subsection}{\numberline {4.2}sendSMS}{7}
+\contentsline {subsection}{\numberline {4.3}setAppointement}{8}
+\contentsline {subsection}{\numberline {4.4}setBeginTimeAndGetTitle}{9}
+\contentsline {subsection}{\numberline {4.5}getNextEvent}{11}
