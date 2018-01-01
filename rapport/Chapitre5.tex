@@ -27,7 +27,7 @@
 \indent Pour supprimer un réveil, c'est plus simple. Nous cherchons la date et l'heure du réveil et le supprimer directement.\\
 
 \indent Pour les détails du code: \\
-\indent Nous avons trouvé que la chaîne de reconnaissance vocale pour le temps est sous format "*h*", par exemple "14h35". Nous avons donc séparé la chaîne par 'h' et pris la première partie comme l'heure du réveil. Nous avons mis la minute du réveil à 0 par défaut s'il manque la deuxième partie dans la chaîne. Il faut ajouter une permission de régler l'alarme dans le fichier \emph{AndroidManifest.xml} : \\
+Nous avons trouvé que la chaîne de reconnaissance vocale pour le temps est sous format "*h*", par exemple "14h35". Nous avons donc séparé la chaîne par 'h' et pris la première partie comme l'heure du réveil. Nous avons mis la minute du réveil à 0 par défaut s'il manque la deuxième partie dans la chaîne. Il faut ajouter une permission de régler l'alarme dans le fichier \emph{AndroidManifest.xml} : \\
 	\begin{lstlisting}[frame=none,aboveskip=-1em]
 	<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 	\end{lstlisting}
