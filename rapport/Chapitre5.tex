@@ -20,12 +20,21 @@
 \indent Pareil, nous écrivons le contenu du sms par l'instance \emph{Intent}.
 	
 \subsubsection{Ajouter et Supprimer un réveil}
-\indent Pour ajouter un réveil, simplement, nous déterminons la date et l'heure du réveil avec la reconnaissance du voix. Ensuite, nous utilisons toujours un instance de \emph{Intent} qui nous permet de réaliser l'ajout des informations pour un réveil. Après, c'est important de déterminer la répétition du réveil. Par différents chaines de caractères, nous trouvrons la demande de répétition d'utilisateur. Finalement, nous finisons l'ajout du réveil.\\
+\indent Idée principale : \\
+\indent Pour ajouter un réveil, simplement, nous déterminons la date et l'heure du réveil avec la reconnaissance vocale. Ensuite, nous utilisons toujours un instance de \emph{Intent} qui nous permet de réaliser l'ajout des informations pour un réveil. Après, c'est important de déterminer la répétition du réveil. Par différents chaines de caractères, nous trouvrons la demande de répétition d'utilisateur. Finalement, nous finisons l'ajout du réveil.\\
 
 \indent Pour supprimer un réveil, c'est plus simple. Nous cherchons la date et l'heure du réveil et le supprimer directement.\\
 
+\indent Pour les détails du code: \\
+Nous avons trouvé que la chaîne de reconnaissance vocale pour le temps est sous format "*h*", par exemple "14h35". Nous avons donc séparé la chaîne par 'h' et pris la première partie comme l'heure du réveil. Nous avons mis la minute du réveil à 0 par défaut s'il manque la deuxième partie dans la chaîne. Il faut ajouter une permission de régler l'alarme dans le fichier \emph{AndroidManifest.xml} : \\
+	\begin{lstlisting}[frame=none,aboveskip=-1em]
+	<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+	\end{lstlisting}
+
+\indent Nous avons implémenté la fonction \emph{deleteAnAlarm(String oobContent)}. Pour réaliser la fonctionnalité, nous devions utiliser une constante \emph{AlarmClock.ACTION$_-$DISMISS$_-$ALARM} qui a besoin d'une API au niveau supérieur ou égal à 23. Cependant, les appareils que nous avions ne possédait qu'au niveau 19. En conséquence, nous ne pourrions pas réaliser cette fonctionnalité.Nous allons le préciser dans la chapitre 6.\\
+
 \subsubsection{Gestion du rendez-vous}
-\indent Nous avons deux types des opérations dans cette fonction. Pour les deux opérations, nous déterminons d'abord les temps de commencer et terminer pour un rendez-vous, ensuite le titre du rendez-vous. Selon le type de l'opération, notre fonction va ajouter ou supprimer le rendez-vous dans le calendrier.\\
+\indent Nous avons modifié la version précédente pour intégrer le traitement de gestion de calendrier au serveur externe, Pandorabots. Nous avons gardé les méthodes pour initialiser l'instance de \emph{GestionCalendar} et les méthodes \emph{ajouterRDV(String titre, Calendar beginTime, Calendar endTime)} et \emph{supprimerRDV(String titre, Calendar beginDate,Calendar endDate)}. Ces deux dernières nous permet d'ajouter ou de supprimer un rendez-vous dans l'agenda de l'appareil.
 
 \subsection{Ajout plusieurs catégories de questions/réponses sur le site Pandorabots}
 
