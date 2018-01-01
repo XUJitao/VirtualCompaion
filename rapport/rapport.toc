@@ -11,3 +11,7 @@
 \contentsline {subsection}{\numberline {3.2}Partie ToolManager}{4}
 \contentsline {section}{\numberline {4}Conception D\IeC {\'e}taill\IeC {\'e}e}{5}
 \contentsline {subsection}{\numberline {4.1}addAnAlarme}{5}
+\contentsline {subsection}{\numberline {4.2}sendSMS}{6}
+\contentsline {subsection}{\numberline {4.3}setAppointement}{7}
+\contentsline {subsection}{\numberline {4.4}setBeginTimeAndGetTitle}{7}
+\contentsline {subsection}{\numberline {4.5}getNextEvent}{9}
