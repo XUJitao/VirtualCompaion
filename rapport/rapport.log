@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.12.2)  1 JAN 2018 16:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.12.2)  1 JAN 2018 16:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -714,30 +714,31 @@ File: latin1.def 2015/03/17 v1.2c Input encoding file
 File: latin1.def 2015/03/17 v1.2c Input encoding file
 )) [12] (./rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 5973 strings out of 494335
- 79997 string characters out of 6163479
+ 5975 strings out of 494335
+ 80019 string characters out of 6163479
  218923 words of memory out of 5000000
- 9186 multiletter control sequences out of 15000+600000
- 16031 words of font info for 36 fonts, out of 8000000 for 9000
+ 9187 multiletter control sequences out of 15000+600000
+ 16715 words of font info for 37 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
  39i,7n,35p,592b,1994s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/xujitao/.texlive2016/texmf-var/fonts/pk/ljfour
-/jknappen/ec/ecbx1440.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk/ljf
-our/jknappen/ec/ecrm1200.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecbx1200.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/
-pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/xujitao/.texlive2016/texmf-var/fon
-ts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </home/xujitao/.texlive2016/texmf-var/
-fonts/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/xujitao/.texlive2016/texmf-v
-ar/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/xujitao/.texlive2016/texm
-f-var/fonts/pk/ljfour/jknappen/ec/ecti1440.600pk> </home/xujitao/.texlive2016/t
-exmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/xujitao/.texlive201
-6/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </home/xujitao/.texlive
-2016/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1728.600pk></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on rapport.pdf (14 pages, 552810 bytes).
+/jknappen/ec/ecti1200.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecbx1440.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecrm1200.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/
+pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/xujitao/.texlive2016/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/xujitao/.texlive2016/texmf-var/
+fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </home/xujitao/.texlive2016/texmf-v
+ar/fonts/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/xujitao/.texlive2016/texm
+f-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/xujitao/.texlive2016/t
+exmf-var/fonts/pk/ljfour/jknappen/ec/ecti1440.600pk> </home/xujitao/.texlive201
+6/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/xujitao/.texlive
+2016/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </home/xujitao/.texl
+ive2016/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1728.600pk></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on rapport.pdf (14 pages, 559154 bytes).
 PDF statistics:
- 393 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 415 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
