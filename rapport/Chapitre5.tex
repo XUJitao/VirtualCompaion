@@ -5,6 +5,7 @@
 \subsection{Mis en place des différentes foncitonnalités}
 	
 \indent Comme nous l'avons dit précédemment, nous avons suivi un cours sur \emph{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les foncition suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent. Les cinq premières fonctions ont été implémenté dans la classe Chatbot, les deux suivantes dans la classe ToolManager.\\
+\indent Toutes les foncitions sont appelées dans la méthode \emph{process$_-$oobContent(String oobContent, String textToSpeak)} sauf getNextEvent et setNextEvent. Le paramètre oobContent contient l'information retourner par le serveur Pandorabots entre "<oob>" et "</oob>". Le deuxième "textToSpeak" ne concerne pas nos fonctions.\\
 
 \subsubsection{Lancer Google Map}
 

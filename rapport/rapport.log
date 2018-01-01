@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.22)  1 JAN 2018 21:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.22)  1 JAN 2018 22:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -721,53 +721,53 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--8
+Underfull \hbox (badness 10000) in paragraph at lines 7--9
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--12
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--14
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18--19
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 23--25
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
+Underfull \hbox (badness 10000) in paragraph at lines 24--26
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--30
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--31
 
  []
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/latin1.def
 File: latin1.def 2015/03/17 v1.2c Input encoding file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 34--35
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
 
  []
 
-) [14] (./rapport.aux) ) 
+) [14] [15] (./rapport.aux) ) 
 Here is how much of TeX's memory you used:
  6031 strings out of 492995
  81462 string characters out of 6132703
@@ -776,25 +776,26 @@ Here is how much of TeX's memory you used:
  16715 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,7n,35p,738b,1994s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-
-super/cm-super-t1.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-su
-per/sfbx1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-supe
-r/sfbx1440.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/
-sfbx1728.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sf
-bx2074.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfcc
-1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfcc14
-40.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfcc1728
-.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0900.p
-fb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb>
-Output written on rapport.pdf (16 pages, 648189 bytes).
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvip
+s/cm-super/cm-super-t1.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
+cm-super/sfbx1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm
+-super/sfbx1440.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-s
+uper/sfbx1728.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-sup
+er/sfbx2074.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super
+/sfcc1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/s
+fcc1440.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfc
+c1728.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0
+900.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm120
+0.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1440.
+pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfti1200.pf
+b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb>
+
+Output written on rapport.pdf (17 pages, 648786 bytes).
 PDF statistics:
- 119 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 122 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
