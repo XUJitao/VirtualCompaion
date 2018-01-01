@@ -8,10 +8,4 @@
 
 	\subsubsection{Lancer Google Map}
 
-	Tout d'abord, selon notre recherche, toutes les chaînes de charactère transmises aux intentions Google Maps doivent être encodées sous forme d'URI. Dans notre fonction, il faut remplacer tous les espaces ' ' par "\%20" ou '+'. Nous avons choisi de les remplacer par '+'. Ensuite, nous avons créer un instance de \emph{Intent}, qui permet de lancer une application depuis l'activité actuelle. 
-
-	En effet, nous avions essayé de lancer la carte de Google Map dans notre application, néanmoins elle ne garde pas tous les fonctionnalité de l'application Google Map. Nous avons donc décidé de l'abandonner. Nous allons le préciser dans la chapitre 6.
-
-	\subsubsection{Envoyer SMS}
-	
-	\subsubsection{Ajouter et Supprimer un réveil}
+	Selon notre recherche, toutes les chaînes de charactère transmises aux intentions Google Maps doivent être encodées sous forme d'URI. Dans notre fonction, il faut remplacer tous les espaces ' ' par "\%20" ou '+'.

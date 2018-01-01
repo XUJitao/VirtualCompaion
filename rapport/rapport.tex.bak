@@ -13,7 +13,8 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
 
 \lstset{
-	frame=single,
+	frame=tb,
+	captionpos=b,
 	inputencoding=utf8/latin1,
 	breaklines=true,
 	showstringspaces=true,
