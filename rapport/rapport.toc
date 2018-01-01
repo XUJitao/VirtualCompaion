@@ -6,3 +6,8 @@
 \contentsline {section}{\numberline {2}Sp\IeC {\'e}cification}{3}
 \contentsline {subsection}{\numberline {2.1}Faisabilit\IeC {\'e} du projet}{3}
 \contentsline {subsection}{\numberline {2.2}Analyse Descendante}{3}
+\contentsline {section}{\numberline {3}Conception Pr\IeC {\'e}liminaire}{4}
+\contentsline {subsection}{\numberline {3.1}Partie Chatbot}{4}
+\contentsline {subsection}{\numberline {3.2}Partie ToolManager}{4}
+\contentsline {section}{\numberline {4}Conception D\IeC {\'e}taill\IeC {\'e}e}{5}
+\contentsline {subsection}{\numberline {4.1}addAnAlarme}{5}

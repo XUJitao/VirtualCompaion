@@ -1,0 +1,46 @@
+procédure addAnAlarm(E oobContent:String)
+début
+	Entier hours <- première partie d'information d'heures
+	si deuxième partie d'information d'heures est vide
+		Entier minutes <- 0
+	sinon
+		Entier minutes <- deuxième partie d'information d'heures
+	finsi
+	Intent intent <- new Intent(AlarmClock.ACTION_SET_ALARM)
+	intent.putExtra(AlarmClock.EXTRA_HOUR, hours)
+	intent.putExtra(AlarmClock.EXTRA_MINUTES, minutes)
+	si oobContent contient balise "<repetition>"
+		ChaineDeCaractère days <- chaine de caractère entre la balise "<repetition>"
+		daysNumber <- nouvel tableau d'entier
+		si days contient "jours"
+			pour i de 1 à 7
+				daysNumber.ajouter(i)
+			finPour
+		sinon
+			si days contient "dimanche"
+				daysNumber.ajouter(1)
+			finsi
+			si days contient "lundi"
+				daysNumber.ajouter(2)
+			finsi
+			si days contient "mardi"
+				daysNumber.ajouter(3)
+			finsi
+			si days contient "mecredi"
+				daysNumber.ajouter(4)
+			finsi
+			si days contient "jeudi"
+				daysNumber.ajouter(5)
+			finsi
+			si days contient "vendredi"
+				daysNumber.ajouter(6)
+			finsi
+			si days contient "samedi"
+				daysNumber.ajouter(7)
+			finsi
+		finsi
+		intent.putExtra(AlarmClock.EXTRA_DAYS, daysNumber)
+	finsi
+	callingActivity.startActivity(intent)
+fin
+	

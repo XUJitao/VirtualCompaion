@@ -1,0 +1,12 @@
+procédure setAppointement(E/S Gcal : GestionCalendar, E oobContent, operationType : String)
+début
+	Calendar beginTime <- temps réel
+	String title <- setBeginTimeAndGetTitle(oobContent, beginTime, operationType)
+	si operationType contient la balise "</add>"
+		Calendar endTime <- beginTime
+		Gcal.ajouterRDV(title, beginTime, endTime)
+	sinon
+		Calendar endTime <- le dernier minute du jour de beginTime
+		Gcal.supprimerRDV(title, beginTime, endTime)
+	finsi
+fin

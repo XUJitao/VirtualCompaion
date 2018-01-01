@@ -1,0 +1,79 @@
+fonction SetBeginTimeAndGetTitle(oobContent : String, beginTime : Calendar, operationType : String) : String
+début
+	String date <- Chaine de caractère entre la balise "<eventdate>"
+	String title <-	chaine vide 
+	Entier day <- 0
+	Entier month <- 0
+	Entier year <- 0
+	Entier hour <- 0
+	Entier minute <- 0
+	Entier i <- 0
+	String[] words <- séparer date par ' '
+	si longueur de words = 0 
+		String sDay <- date
+	sinon
+		String sDay <- words[i]
+	finsi
+	si sDay est un Entier
+		day <- parseInt(sDay)
+		i <- i + 1
+	sinon 
+		day = beginTime.DAY
+	finSi
+	Dictionnaire<String, Integer> months <- nouvel Hashmap
+	months.put("janvier", 0)	
+	months.put("février", 1)	
+	months.put("mars", 2)	
+	months.put("avril", 3)	
+	months.put("mai", 4)	
+	months.put("juin", 5)	
+	months.put("juillet", 6)	
+	months.put("août", 7)	
+	months.put("septembre", 8)	
+	months.put("octobre", 9)	
+	months.put("novembre", 10)	
+	months.put("décembre", 11)	
+	si words[i] est dans months
+		month <- months.get(words[i])
+		i <- i + 1
+	sion
+		month <- beginTime.MONTH
+	finSi
+	si words[i] est un entier
+		year <- parseInt(words[i])
+		i <- i + 1
+	sinon
+		year = beginTime.YEAR
+	finSi
+	si oobContent contient la balise "<eventtime>"
+		String time <- Chaine de caractère entre la balise "<eventtime>"
+		String[] hr <- Chaine de caractère séparée par "h"
+		si hr[0] est un entier
+			hour <- parseInt(hr[0])
+		sinon
+			hour <- 0
+		finSi
+		si longueur de hr supérieure à 1
+			minute <- parseInt(hr[1])
+		sinon
+			minute <- 0
+		finsi
+		si oobContent contient la balise "<event>"
+			title <- Chaine de caractère entre la balise "<event>"
+		sinon
+			title <- Chaine de caractère entre la balise "</eventtime>" et la balise operationType
+		finsi
+	sinon
+		hour <- beginTime.HOUR
+		minute <- beginTime.MINUTE
+		si i inférieur à la longueur de words
+			title <- sous-chaine de date commence à indice de words[i]
+		finsi
+	finsi
+	si operationType = "</delete>"
+		beginTime.set(year, month, day, 0, 0)
+	sinon
+		beginTime.set(year, month, day, hour, minute)
+	finsi
+	retourner title
+fin

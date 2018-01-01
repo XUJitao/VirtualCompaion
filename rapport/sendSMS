@@ -1,0 +1,55 @@
+procédure sendSMS(E oobContent : String)
+début
+	String sendSmsTo <- Chaine de caractère entre la balise "<people>"
+	si la première caractère de sendSmsTo n'est pas une lettre
+		si oobContent contient la balise "<message>"
+			String smsContent <- Chaine de caractère entre la balise "<message>"
+			Intent intent <- new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + sendSmsTo))
+			intent.setData(Uri.parse("sms_body" + smsContent))
+			commencer l'activité intent par callingActivity
+		finsi
+	sinon
+		Cursor c <- callingActivity.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null)
+		String name <- ""
+		String number <- ""
+		String numberToSendSms <- ""
+		String id
+		bouge c au premier
+		booléen trouve <- faux
+		tant que non trouve
+			si c.getString(0) est non null
+				name <- CDC de la colonne de ContactsContract.Contacts.DISPLAY_NAME
+				id <- CDC de la colonne de ContactsContract.Contacts._ID
+				si ContactsContract.Contacts.HAS_PHONE_NUMBER est vrai
+					Cursor pCur <- callingActivity.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " =?", new String[]{id}, null);
+					tant que pCur peut bouger à la suivante
+						number <- CDC de la colonne de ContactsContract.CommonDateKinds.Phone.NUMBER
+					fin tant que
+					ferme pCur
+				finsi
+				String[] words <- CDC de sendSmsTo séparée par " "
+				StringBuilder sb <- new StringBuilder
+				si longueur de words[0] est supérieur à 0
+					sb.append(words[0])
+					pour j de 1 à longueur de words
+						sb.append(" ")
+						sb.append(words[j])
+					finPour
+				finsi
+				String nom <- sb.toString()
+				si name = nom
+					numberToSendSms <- number
+					trouve <- vrai
+				finsi
+			finsi
+			bouge c à la suivante
+		fin tant que
+		c.close()
+		si oonContent contient la balise "<message>"
+			String smsContent <- CDC entre la balise "<message>"
+			Intent intent <- new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + numberToSendSms))
+			intent.putExtra("sms_body", smsContent)
+			commencer l'activité intent par callingActivity
+		finsi
+	finsi
+fin
