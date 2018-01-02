@@ -50,6 +50,16 @@
 \indent Nous avons aussi supprimé la méthode \emph{prochainRDV} pour créer une nouvelle dans la classe \emph{ToolManager}. La méthode \emph{getNextEvent()} permet de retourner une chaîne de caractère qui contient les informations du prochain rendez-vous. Dans la méthode, nous avons créer un instance de \emph{Cursor} qui peut se déplacer comme un pointeur. Nous cherchions dans la liste d'événement stocké dans l'agenda de l'appareil pour trouver l'événement le plus proche de la date actuel.
 
 \subsection{Ajout plusieurs catégories de questions/réponses sur le site Pandorabots}
+
+\indent Nous continuions à utiliser le compte créé par les étudiants précédents pour ajouter des catégories de questions/réponses, avec les identifiants suivants:
+
+\begin{center}
+	Email : \emph{alexandre.levacher@insa-rouen.fr}\\
+	Mot de passe : \emph{PAOCompagnonVirtuel3}
+\end{center}
+
+\indent Tout les informations d'une quesion/réponse sont comprises entre \emph{<category>} et \emph{</cagegory>}. La balise \emph{<pattern>} contient la question et la balise \emph{<template>} est la partie de réponse intelligente. La balise \emph{<oob>} se situe dans la balise \emph{<template>}.
+
 \subsubsection{Ajouter un réveil sans répétition}
 \begin{lstlisting}[frame=none,aboveskip=0.5em]
 <category><pattern>SONNER POUR *</pattern><template><oob><alarmclock>
