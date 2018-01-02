@@ -15,7 +15,7 @@
 \lstset{
 	frame=tb,
 	captionpos=b,
-	basicstyle=\bfseries,
+	basicstyle=\footnotesize\bfseries,
 	inputencoding=utf8/latin1,
 	breaklines=true,
 	showstringspaces=true,
@@ -110,7 +110,7 @@ Alexandre \textsc{PAUCHET}
 \input{Chapitre3.tex}
 \input{Chapitre4.tex}
 \input{Chapitre5.tex}
-
+\input{Chapitre6.tex}
 
 
 

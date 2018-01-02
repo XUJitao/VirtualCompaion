@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.1.1)  2 JAN 2018 13:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.1.1)  2 JAN 2018 18:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -800,37 +800,50 @@ File: latin1.def 2015/03/17 v1.2c Input encoding file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
 File: latin1.def 2015/03/17 v1.2c Input encoding file
-)) [15] [16]
-(./rapport.aux) ) 
+) [15] [16])
+(./Chapitre6.tex
+Overfull \hbox (10.22562pt too wide) in paragraph at lines 24--25
+\T1/cmr/m/n/12 der-nière est levé en ap-pe-lant \T1/cmr/bx/it/12 connec-tion.co
+nnect() \T1/cmr/m/n/12 dans la mé-thode \T1/cmr/bx/it/12 sa-veXm-lInS-tring(Str
+ing
+ []
+
+
+Overfull \hbox (35.73958pt too wide) in paragraph at lines 24--25
+\T1/cmr/bx/it/12 https ://stackoverflow.com/questions/42468807/javax-net-ssl-ss
+lexception-ssl-handshake
+ []
+
+[17] [18]) (./rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 6073 strings out of 494335
- 82855 string characters out of 6163480
+ 6076 strings out of 494335
+ 82892 string characters out of 6163480
  313063 words of memory out of 5000000
  9237 multiletter control sequences out of 15000+600000
  18443 words of font info for 40 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
  39i,7n,35p,1123b,2075s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/xujitao/.texlive2016/texmf-var/fonts/pk/ljfour/jknappe
-n/ec/ecti1200.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk/ljfour/jkna
-ppen/ec/ecbx1000.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecbi1200.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk/ljfou
-r/jknappen/ec/ecbx1440.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk/lj
-four/jknappen/ec/ecrm1200.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk
-/ljfour/jknappen/ec/ecbx1200.600pk> </home/xujitao/.texlive2016/texmf-var/fonts
-/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/xujitao/.texlive2016/texmf-var/fo
-nts/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/xujitao/.texlive2016/texmf-var
-/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/xujitao/.texlive2016/texmf-
-var/fonts/pk/ljfour/jknappen/ec/ecti1440.600pk> </home/xujitao/.texlive2016/tex
-mf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/xujitao/.texlive2016/
-texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </home/xujitao/.texlive20
-16/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1728.600pk></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on rapport.pdf (18 pages, 631000 bytes).
+ </home/xujitao/.texlive2016/texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecti1200.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecbx1000.600pk> </home/xujitao/.texlive2016/texmf-var/fonts/
+pk/ljfour/jknappen/ec/ecbi1200.600pk> </home/xujitao/.texlive2016/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/xujitao/.texlive2016/texmf-var/
+fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/xujitao/.texlive2016/texmf-v
+ar/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/xujitao/.texlive2016/texm
+f-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/xujitao/.texlive2016/t
+exmf-var/fonts/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/xujitao/.texlive201
+6/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/xujitao/.texlive
+2016/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1440.600pk> </home/xujitao/.texl
+ive2016/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/xujitao/.t
+exlive2016/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </home/xujitao
+/.texlive2016/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1728.600pk></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on rapport.pdf (20 pages, 641081 bytes).
 PDF statistics:
- 581 PDF objects out of 1000 (max. 8388607)
- 103 compressed objects within 2 object streams
+ 604 PDF objects out of 1000 (max. 8388607)
+ 108 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

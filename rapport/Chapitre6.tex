@@ -1,0 +1,26 @@
+\section*{Chapitre 6}
+\section{Problèmes rencontrés et résolutions}
+
+\indent Dans ce chapitre, nous exposerons les problèmes que nous avons rencontré lors du développement de l'application. Tout d'abord, nous verrons les problèmes de base d'Android rencontrés avant de commencer le dévloppement. Ensuite, nous expliqureons les difficultés que nous avons eu en développant les différentes fonctionnalités. Nous terminerons par le problème avec le code AIML.
+
+\subsection{Problèmes avant le développement}
+
+\indent Les versions déjà existantes que nous avons été données ne fonctionnaient pas au début. Les problèmes que nous avons résolu sont les suivants : Le problème de signature de développeur, la connection avec le serveur Pandorabots et la gestion du socket. Nous les expliqureons respectivement.
+
+\subsubsection{Problème de signature de développeur}
+
+\indent Pour installer une application Android dans un appareil, le développeur doit signer numériquement cette application. Dans ce cas-là chaque développeur doit avoir une clé de signature pour une application. Nous avons éffectué une recherche bibliographique sur l'Internet pour créer une clé et signer une application. Nous avons trouvé le guide sur le site : \textbf{\emph{https://developer.android.com/studio/publish/app-signing.html}}. En suivant ce guide, nous avons réussi à signer et lancer notre application.
+
+\indent En plus, pour pouvoir partager et développer le code entre une équipe, il faut cacher les informations de la clé personnelle. Le guide nous proposait aussi les instructions de créer un fichier \textbf{\emph{keystore.properties}} et de modifier le code dans le fichier \textbf{\emph{build.gradle}} pour utiliser le fichier \textbf{\emph{keystore.properties}}. Cependant, nous n'avons pas bien réussi à régler cette modification en utilisant Git pour partager le code. Nous rencontrions parfois le problème d'incohésion de la clé avec Git.
+
+\subsubsection{La connection avec le serveur Pandorabots}
+
+\indent Après avoir réglé le problème de signature, nous avons essayé de tester les versions précédentes. Nous avons trouvé que l'application ne répondait pas à ce que nous avons dit. Nous avons ajouté beaucoup de log dans différentes méthodes pour trouver le lieu qui posait problème. Au final, nous avons trouvé que dans la méthode \textbf{\emph{initiateQuery(String query)}} de la classe \textbf{\emph{ChatBot}}, l'url pour faire une requête vers le serveur est redirigé permanente avec le code de status 301. En comparant avec l'url de site d'où nous avons modifié les fichiers AIML, nous avons changé \textbf{http} à \textbf{https} dans la variable \textbf{\emph{fullQuery}}. Cette modification nous permettait de bien connecter au serveur et de recevoir les réponses intelligentes.
+
+\subsubsection{La gestion du socket}
+
+\indent Cette partie de problème est rencontrée, en effet, à la fin du développement. Néanmoins, nous pensons que cela puisse être un problème avant le développenment.
+
+\indent Nous avons eu une exception \textbf{\emph{javax.net.ssl.SSLException}} en testant l'application. Cette dernière est levé en appelant \textbf{\emph{connection.connect()}} dans la méthode \textbf{\emph{saveXmlInString(String urlString)}} de la classe \textbf{\emph{RetrieveXMLTask}}. Nous n'avons pas réussir à trouver la raison pour la quelle cette exception n'avais pas apparu avant. Après une recherche sur l'Internet, nous pensions que l'utilisation de protocole de communication par défaut pour un version de API 19 ait été la cause de cette exception. Nous avons trouvé la solution sur le site : \textbf{\emph{https://stackoverflow.com/questions/42468807/javax-net-ssl-sslexception-ssl-handshake -aborted-on-android-old-devices}}. En ajoutant une méthode pour initialiser le contexte SSL dans la classe \textbf{\emph{RetrieveXMLTask}}, le problème a été résolu.
+
+\newpage

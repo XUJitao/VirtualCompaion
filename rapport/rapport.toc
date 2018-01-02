@@ -33,3 +33,8 @@
 \contentsline {subsubsection}{\numberline {5.2.7}Envoyer un sms}{15}
 \contentsline {subsection}{\numberline {5.3}Modification de l'interface d'utilisateur}{15}
 \contentsline {subsection}{\numberline {5.4}Changement du personnage}{16}
+\contentsline {section}{\numberline {6}Probl\IeC {\`e}mes rencontr\IeC {\'e}s et r\IeC {\'e}solutions}{17}
+\contentsline {subsection}{\numberline {6.1}Probl\IeC {\`e}mes avant le d\IeC {\'e}veloppement}{17}
+\contentsline {subsubsection}{\numberline {6.1.1}Probl\IeC {\`e}me de signature de d\IeC {\'e}veloppeur}{17}
+\contentsline {subsubsection}{\numberline {6.1.2}La connection avec le serveur Pandorabots}{17}
+\contentsline {subsubsection}{\numberline {6.1.3}La gestion du socket}{17}
