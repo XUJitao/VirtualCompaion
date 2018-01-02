@@ -1,11 +1,154 @@
 \section*{Chapitre 5}
 \section{Développememnt}
-	La partie développement s'est déroulée en quatre sous parties. Tout d'abord, nous nous sommes informés des méthodes proposées sur Android pour mettre en place les fonctionnalités précisées dans le Chapitre 4. Ensuite nous avons ajouté plusieurs catégories de question/réponse sur le site Pandorabots pour faire fonctionner notre fonctionnalités. Enfin, nous avons modifié l'interface d'utilisateurs de l'application pour améliorer l'expérience d'utilisation. Ainsi, Nous avons changer le personnage animé pour afficher plus d'information sur l'activité principale. Ces quatre sous parties sont étés implémenter itérativement tout au long de développement.
+	La partie développement s'est déroulée en quatre sous parties. Tout d'abord, nous nous sommes informés des méthodes proposées sur Android pour mettre en place les fonctionnalités précisés dans le Chapitre 4. Ensuite nous avons ajouté plusieurs catégories de questions/réponses sur le site Pandorabots pour faire fonctionner nos fonctionnalités. Enfin, nous avons modifié l'interface d'utilisateurs de l'application pour améliorer l'expérience d'utilisation. Dans ce cas là, Nous avons changé le personnage d'animation pour afficher plus d'informations sur l'activité principale. Ces quatre sous parties ont été implémenté itérativement tout au long du développement.
 
-	\subsection{Mis en place des différentes foncitonnalités}
+\subsection{Mis en place des différentes foncitonnalités}
 	
-	Comme nous l'avons dit précédemment, nous avons suivi un cours sur \emph{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les foncition suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent.
+\indent Comme nous l'avons dit précédemment, nous avons suivi un cours sur \emph{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les foncition suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent. Les cinq premières fonctions ont été implémenté dans la classe Chatbot, les deux suivantes dans la classe ToolManager.\\
+\indent Toutes les foncitions sont appelées dans la méthode \textbf{\emph{process$_-$oobContent(String oobContent, String textToSpeak)}} sauf getNextEvent et setNextEvent. Le paramètre oobContent contient l'information retourner par le serveur Pandorabots entre "<oob>" et "</oob>". Le deuxième "textToSpeak" ne concerne pas nos fonctions.
 
-	\subsubsection{Lancer Google Map}
+\subsubsection{Lancer Google Map}
 
-	Selon notre recherche, toutes les chaînes de charactère transmises aux intentions Google Maps doivent être encodées sous forme d'URI. Dans notre fonction, il faut remplacer tous les espaces ' ' par "\%20" ou '+'.
+\indent Premièrement, selon notre recherche, toutes les chaînes de caractère transmises aux intentions Google Maps doivent être encodées sous forme d'URI. Dans notre fonction, il faut remplacer tous les espaces ' ' par "\%20" ou '+'. Nous avons choisi de les remplacer par '+'. Ensuite, nous avons créé un instance de \textbf{\emph{Intent}}, qui permet de lancer une application depuis l'activité actuelle. 
+
+\indent En effet, nous avions essayé d'afficher la carte de Google Map dans notre application, néanmoins elle ne garde pas tous les fonctionnalité de l'application Google Map. Nous avons donc décidé de l'abandonner. Nous allons le préciser dans la chapitre 6.
+
+\subsubsection{Envoyer SMS}
+\indent Nous proposons deux types de destination du sms : un numéro de téléphone mobile ou un correspondant dans le carnet d'adresses.  Pour les réaliser, il faut toujours déterminer le type de première caractère de destination. Si c'est une lettre, donc nous prenons le mode 'correspondant', sinon, nous prenons le mode 'numéro de téléphone mobile'. Grâce au instance \textbf{\emph{Intent}}, notre fonction pouvons lire le String qui décrit la destination du sms. 
+
+\indent Si nous sommes tombé dans le deuxième mode, nous allons chercher le numéro de téléphone mobile dans le carnet d'adresses, et puis envoyer le sms par le numéro.\\
+
+\indent Pareil, nous écrivons le contenu du sms par l'instance \textbf{\emph{Intent}}.
+	
+\subsubsection{Ajouter et Supprimer un réveil}
+\indent Idée principale :
+
+\indent Pour ajouter un réveil, simplement, nous déterminons la date et l'heure du réveil avec la reconnaissance vocale. Ensuite, nous utilisons toujours un instance de \textbf{\emph{Intent}} qui nous permet de réaliser l'ajout des informations pour un réveil. Après, c'est important de déterminer la répétition du réveil. Par différents chaines de caractères, nous trouvrons la demande de répétition d'utilisateur. Finalement, nous finisons l'ajout du réveil.
+
+\indent Pour supprimer un réveil, c'est plus simple. Nous cherchons la date et l'heure du réveil et le supprimer directement.
+
+\indent Pour les détails du code: 
+
+\indent Nous avons trouvé que la chaîne de reconnaissance vocale pour le temps est sous format "*h*", par exemple "14h35". Nous avons donc séparé la chaîne par 'h' et pris la première partie comme l'heure du réveil. Nous avons mis la minute du réveil à 0 par défaut s'il manque la deuxième partie dans la chaîne. Il faut ajouter une permission de régler l'alarme dans le fichier \textbf{\emph{AndroidManifest.xml}} : \\
+	\begin{lstlisting}[frame=none,aboveskip=-0.5em,basicstyle=\footnotesize\bfseries]
+	<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+	\end{lstlisting}
+
+\indent Nous avons implémenté la fonction \textbf{\emph{deleteAnAlarm(String oobContent)}}. Pour réaliser la fonctionnalité, nous devions utiliser une constante \textbf{\emph{AlarmClock.ACTION$_-$DISMISS$_-$ALARM}} qui a besoin d'une API au niveau supérieur ou égal à 23. Cependant, les appareils que nous avions ne possédait qu'au niveau 19. En conséquence, nous ne pourrions pas réaliser cette fonctionnalité.Nous allons le préciser dans la chapitre 6.
+
+\subsubsection{Gestion du rendez-vous}
+\subsubsection*{Ajouter et Supprimer un rendez-vous}
+
+\indent Nous avons modifié la version précédente pour intégrer le traitement de gestion de calendrier au serveur externe, Pandorabots. Nous avons gardé les méthodes pour initialiser l'instance de \textbf{\emph{GestionCalendar}} et les méthodes \textbf{\emph{ajouterRDV(String titre, Calendar beginTime, Calendar endTime)}} et \textbf{\emph{supprimerRDV(String titre, Calendar beginDate,Calendar endDate)}}. Ces deux dernières nous permet d'ajouter ou de supprimer un rendez-vous dans l'agenda de l'appareil.
+
+\indent Nous avons créer une méthode \textbf{\emph{setAppointement(GestionCalendar Gcal, String oobContent, String operationType)}} qui nous permet de distinguer l'ajout et la suppression du rendez-vous. Pour pouvoir utiliser les méthodes déjà existantes, il faut avoir le titre, la date de début et la date de fin du rendez-vous. Pour simplifier le traitement, nous avons créer une méthode \textbf{\emph{setBeginTimeAndGetTitle(String oobContent, Calendar beginTime, String operationType)}} qui régler la date de début et retourner le titre de rendez-vous en même temps. Dans cette dernière méthode, le paramètre \textbf{\emph{beginTime}} en entrée est la date actuel du système. Nous avons met à défaut toutes les parties de la date commes la date actuel. Nous avons vérifié la chaîne \textbf{\emph{oobContent}} dans l'ordre suivantes : jour, mois, an, heure, minute, titre. Pour chaque partie précisée, nous avons met à jour l'information. Si l'utilisateur n'a pas précisé le titre du rendez-vous, le titre par défaut sera une chaîne vide.
+
+\indent La méthode \textbf{\emph{setBeginTimeAndGetTitle}} permet l'utilisateur de ne pas préciser n'importe quelle partie d'une date tant que les informations précisées sont dans l'ordre.
+
+\subsubsection*{Mettre à jour le prochain rendez-vous}
+
+\indent Nous avons aussi supprimé la méthode \textbf{\emph{prochainRDV}} pour créer une nouvelle dans la classe \textbf{\emph{ToolManager}}. La méthode \textbf{\emph{getNextEvent()}} permet de retourner une chaîne de caractère qui contient les informations du prochain rendez-vous. Dans la méthode, nous avons créer un instance de \textbf{\emph{Cursor}} qui peut se déplacer comme un pointeur. Nous cherchions dans la liste d'événement stocké dans l'agenda de l'appareil pour trouver l'événement le plus proche de la date actuel.
+
+\subsection{Ajout plusieurs catégories de questions/réponses sur le site Pandorabots}
+
+\indent Nous continuions à utiliser le compte créé par les étudiants précédents pour ajouter des catégories de questions/réponses sur \textbf{\emph{https://www.pandorabots.com/botmaster/fr/home}}, avec les identifiants suivants:
+
+\begin{center}
+	Email : \textbf{\emph{alexandre.levacher@insa-rouen.fr}}\\
+	Mot de passe : \textbf{\emph{PAOCompagnonVirtuel3}}
+\end{center}
+
+\indent Tout les informations d'une quesion/réponse sont comprises entre \textbf{\emph{<category>}} et \textbf{\emph{</cagegory>}}. La balise \textbf{\emph{<pattern>}} contient la question et la balise \textbf{\emph{<template>}} est la partie de réponse intelligente. La balise \textbf{\emph{<oob>}} se situe dans la balise \textbf{\emph{<template>}}.
+
+\subsubsection{Ajouter un réveil sans répétition}
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>SONNER POUR *</pattern><template><oob><alarmclock>
+<add><star/></add></alarmclock></oob></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>AJOUTER UN RÉVEIL À * </pattern><template><srai>SONNER POUR <star/></srai></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>AJOUTER UN RÉVEIL POUR * </pattern><template><srai>SONNER POUR <star/></srai></template></category>
+\end{lstlisting}
+
+\subsubsection{Ajouter un réveil avec répétition}
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>AJOUTER UN RÉVEIL À * POUR TOUS LES * </pattern><template><oob><alarmclock><add><star index="1"/></add><repetition><star index="2"/></repetition></alarmclock></oob></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>AJOUTER UN RÉVEIL POUR * POUR TOUS LES * </pattern><template><srai>AJOUTER UN RÉVEIL À<star index="1"/>POUR TOUS LES<star index="2"/></srai></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>AJOUTER UN RÉVEIL POUR TOUS LES * POUR * </pattern><template><srai>AJOUTER UN RÉVEIL À<star index="2"/>POUR TOUS LES<star index="1"/></srai></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>AJOUTER UN RÉVEIL POUR TOUS LES * À * </pattern><template><srai>AJOUTER UN RÉVEIL À<star index="2"/>POUR TOUS LES<star index="1"/></srai></template></category>
+\end{lstlisting}
+
+\subsubsection{Supprimer un réveil}
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>SUPPRIMER UN RÉVEIL DE *</pattern><template><oob>
+<alarmclock><delete><star/></delete></alarmclock></oob></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>SUPPRIMER UN RÉVEIL À *</pattern><template><srai>SUPPRIMER UN RÉVEIL DE <star/></srai></template></category>
+\end{lstlisting}
+
+\subsubsection{Ajouter un rendez-vous}
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>AJOUTER UN RENDEZ-VOUS LE *</pattern><template><oob><appointment><add><eventdate><star/></eventdate></add></appointment></oob></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>AJOUTER UN RENDEZ-VOUS LE * À * , *</pattern><template><oob><appointment><add><eventdate><star index="1"/></eventdate><eventtime><star index="2"/></eventtime><event><star index="3"/></event></add></appointment></oob></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>AJOUTER UN RENDEZ-VOUS LE * À *</pattern><template><oob><appointment><add><eventdate><star index="1"/></eventdate><eventtime><star index="2"/></eventtime></add></appointment></oob></template></category>
+\end{lstlisting}
+
+\subsubsection{Supprimer un rendez-vous}
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>SUPPRIMER UN RENDEZ-VOUS LE *</pattern><template><oob><appointment><delete><eventdate><star/></eventdate></delete></appointment></oob></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>SUPPRIMER UN RENDEZ-VOUS LE * À * INTITULÉ *</pattern><template><oob><appointment><delete><eventdate><star index="1"/></eventdate><eventtime><star index="2"/></eventtime><event><star index="3"/></event></delete></appointment></oob></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>SUPPRIMER UN RENDEZ-VOUS LE * INTITULÉ *</pattern><template><oob><appointment><delete><eventdate><star index="1"/></eventdate><eventtime>0</eventtime><event><star index="2"/></event></delete></appointment></oob></template></category>
+\end{lstlisting}
+
+\subsubsection{Réaliser une recherche en Google Map}
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>_MAPS *</pattern><template><oob><maps><star/></maps></oob></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>_ MAPS *</pattern><template><oob><maps><star/></maps></oob></template></category>
+\end{lstlisting}
+
+\subsubsection{Envoyer un sms}
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>_ENVOYER UN SMS POUR * POUR DIRE *</pattern><template><oob><send><people><star index="1"/></people><message><star index="2"/></message></send></oob></template></category>
+\end{lstlisting}
+
+\begin{lstlisting}[frame=none,aboveskip=0.5em]
+<category><pattern>_ENVOIE UN SMS POUR * POUR DIRE *</pattern><template><oob><send><people><star index="1"/></people><message><star index="2"/></message></send></oob></template></category>
+\end{lstlisting}
+
+
+
+\subsection{Modification de l'interface d'utilisateur}
+\indent Premièrement, nous avons séparé le centre de l'interface d'utilisateur à deux partie. La partie gauche affiche les cinq reconnaissaces vocales du voix de l'utilisateur plus possibles. La partie droite affiche la réponse de notre application s'il existe. En bas de l'écran, nous avons ajouté un \textbf{\emph{textField}} pour afficher le prochain événement dans le calendrier. Ce \textbf{\emph{textField}} va se mettre à jour s'il existe un changement d'événement plus proche dans le calendrier grâce à la fonction \textbf{\emph{getNextEvent}}. Autrement, nous avons changé le personnage d'animation. Nous allons parler dans la paragraphe suivante.
+
+\subsection{Changement du personnage}
+\indent Nous avons choisi un personnage d'animation de Microsoft qui est open source. Nous avons téléchargé l'ensemble d'image du personnage tout d'abord. Puis, nous avons utilisé l'outil pour le couper par chaque action. Pour différentes actions, nous avons proposé un temp de continu. Avec ces images, nous avons réalisé les animations  suivantes: saluer, écouter, trouver une  erreur, parler, rire, répondre, etc. Ce changement du personnage améliore notre l'interface d'utilisateur, de plus, il nous permet d'avoir plus d'espace sur l'écran pour afficher d'autres informations. Nous pensons que c'est un changement indispensable.
