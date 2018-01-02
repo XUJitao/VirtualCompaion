@@ -7,7 +7,7 @@
 \contentsline {subsection}{\numberline {2.1}Faisabilit\IeC {\'e} du projet}{3}
 \contentsline {subsection}{\numberline {2.2}Analyse Descendante}{3}
 \contentsline {section}{\numberline {3}Conception Pr\IeC {\'e}liminaire}{4}
-\contentsline {subsection}{\numberline {3.1}Cas d'utilisation}{4}
+\contentsline {subsection}{\numberline {3.1}Diagramme de cas d'utilisation}{4}
 \contentsline {subsection}{\numberline {3.2}Diagrammes de Sequence}{4}
 \contentsline {subsection}{\numberline {3.3}Signatures Partie Chatbot}{5}
 \contentsline {subsection}{\numberline {3.4}Signatures Partie ToolManager}{6}
