@@ -48,6 +48,7 @@
 \contentsline {subsection}{\numberline {7.1}... Aurions du faire}{20}
 \contentsline {subsubsection}{\numberline {7.1.1}Apprentissage au chatbot}{20}
 \contentsline {subsection}{\numberline {7.2}... pourrions faire par la suite}{21}
-\contentsline {subsubsection}{\numberline {7.2.1}Am\IeC {\'e}liorer l'interface d'utilisateur encore}{21}
-\contentsline {subsubsection}{\numberline {7.2.2}Ajout des fonctionnalit\IeC {\'e}s quotidiennes}{21}
-\contentsline {subsubsection}{\numberline {7.2.3}Gestion de la langue du compagnon virtuel}{22}
+\contentsline {subsubsection}{\numberline {7.2.1}R\IeC {\'e}aliser les fonctionnalit\IeC {\'e}s avec l'API propre}{21}
+\contentsline {subsubsection}{\numberline {7.2.2}Am\IeC {\'e}liorer l'interface d'utilisateur encore}{21}
+\contentsline {subsubsection}{\numberline {7.2.3}Ajout des fonctionnalit\IeC {\'e}s quotidiennes}{22}
+\contentsline {subsubsection}{\numberline {7.2.4}Gestion de la langue du compagnon virtuel}{22}
