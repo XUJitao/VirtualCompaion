@@ -1,7 +1,7 @@
 \section*{Chapitre 6}
 \section{Problèmes rencontrés et résolutions}
 
-\indent Dans ce chapitre, nous exposerons les problèmes que nous avons rencontré lors du développement de l'application. Tout d'abord, nous verrons les problèmes de la base d'Android rencontrés avant de commencer le développement. Ensuite, nous expliqureons les difficultés que nous avons eu en développant les différents fonctionnalités. Nous terminerons par le problème avec le code AIML.
+\indent Dans ce chapitre, nous exposerons les problèmes que nous avons rencontré lors du développement de l'application. Tout d'abord, nous verrons les problèmes de la base d'Android rencontrés avant de commencer le développement. Ensuite, nous expliqureons les difficultés que nous avons eu en développant les différentes fonctionnalités. Nous terminerons par le problème avec le code AIML.
 
 \subsection{Problèmes avant le développement}
 
@@ -9,7 +9,11 @@
 
 \subsubsection{Problème de signature de développeur}
 
-\indent Pour installer une application Android dans un appareil, le développeur doit signer numériquement cette application. Dans ce cas-là chaque développeur doit avoir une clé de signature pour une application. Nous avons fait une recherche bibliographique sur l'Internet pour créer une clé et signer une application. Nous avons trouvé le guide sur le site : \textbf{\emph{https://developer.android.com/studio/publish/app-signing.html}}.Suivant ce guide, nous avons réussi de signer et lancer notre application.
+\indent Pour installer une application Android dans un appareil, le développeur doit signer numériquement cette application. Dans ce cas-là chaque développeur doit avoir une clé de signature pour une application. Nous avons fait une recherche bibliographique sur l'Internet pour créer une clé et signer une application. Nous avons trouvé le guide sur le site : 
+\begin{center}
+\textbf{\emph{https://developer.android.com/studio/publish/app-signing.html}}.\\
+\end{center}
+En suivant ce guide, nous avons réussi de signer et lancer notre application.
 
 \indent De plus, pour pouvoir partager et développer le code entre une équipe, il faut cacher les informations de la clé personnelle. Le guide nous proposait aussi les instructions de créer un fichier \textbf{\emph{keystore.properties}} et de modifier le code dans le fichier \textbf{\emph{build.gradle}} pour utiliser le fichier \textbf{\emph{keystore.properties}}. Cependant, nous n'avons pas bien réussi à régler cette modification en utilisant Git pour partager le code. Nous rencontrions parfois le problème d'incohésion de la clé avec Git.
 
@@ -22,5 +26,35 @@
 \indent Cette partie de problème est rencontrée, en effet, à la fin du développement. Néanmoins, nous pensons que cela puisse être un problème avant le développement.
 
 \indent Nous avons eu une exception \textbf{\emph{javax.net.ssl.SSLException}} en testant l'application. Cette dernière s'est apparue en appelant \textbf{\emph{connection.connect()}} dans la méthode \textbf{\emph{saveXmlInString(String urlString)}} de la classe \textbf{\emph{RetrieveXMLTask}}. Nous n'avons pas réussi de trouver la raison pour la quelle cette exception n'avais pas apparu avant. Après une recherche sur l'Internet, nous pensions que l'utilisation de protocole de communication par défaut pour un version de API 19 ait été la cause de cette exception. Nous avons trouvé la solution sur le site : \textbf{\emph{https://stackoverflow.com/questions/42468807/javax-net-ssl-sslexception-ssl-handshake -aborted-on-android-old-devices}}. En ajoutant une méthode pour initialiser le contexte SSL dans la classe \textbf{\emph{RetrieveXMLTask}}, le problème a été résolu.
+
+\subsection{Difficultés en développant les fonctionnalités}
+
+\indent Dans cette partie, nous allons expliquer la difficulté d'utiliser l'activité Map et les problèmes avec le niveau d'API Android.
+
+\subsubsection{L'activité Map}
+
+\indent Au début de ce projet, nous avons planifié d'afficher une carte Google Map dans notre application. Nous avons suivi un autre cours sur \emph{www.udacity.com} qui est concentré sur comment ajouter une carte dans l'application. Nous avons réussi à ajouter une activité \textbf{\emph{MapActivity}} et à afficher la carte dans l'application. Nous avons essayé d'effectuer la recherche de Google Map pour un lieu dans l'activité. Nous avons fait beaucoup de cherche sur l'Internet. Cependant, la manière de transférer un nom de lieu ou d'adresse, par exemple Paris, à une coordonnée geographique était compliquée. Il faut utiliser un serveur de Google pour effectuer la transformation et créer une base de donnée locale pour stocker toutes les transformation déjà éffectuée. Même si nous pourrions réussir à faire la transformation, l'activité \textbf{\emph{MapActivity}} ne nous permettra pas de réaliser d'autre recherche en plus selon notre cherche bibliographique. Nous n'avons pas trouvé la manière d'ajouter la barre de recherche de Google Map dans l'activité.
+
+\indent En considérant le travail que nous aurons besoins de réaliser la fonctionnalité et le résultat que nous pourrons avoir, nous avons décidé d'abandonner l'affichage de la carte dans notre application. Nous lancions directement l'application Google Map pour pouvoir réaliser tous fonctionnalités de Google Map.
+
+\subsubsection{Problèmes avec le niveau d'API Android}
+
+\indent L'appareil que nous possédions pour réaliser ce projet est de l'API 19. Néanmoins, nous avons eu deux foncitionnalités qui demandait l'API de niveau plus haut.
+
+\subsubsection*{Supprimer un réveil}
+
+\indent Comme nous avons dit dans le Chapitre 5, pour supprimer un réveil, il faut utiliser une constante \textbf{\emph{AlarmClock.ACTION$_-$DISMISS$_-$ALARM}}. Cette dernière exigait un API 23 ou supérieur. En conséquence, nous ne pouvions pas réaliser cette fonctionnalité. Nous avons quand même développé la méthode \textbf{\emph{deleteAnAlarm(String oobContent)}} dans la classe \textbf{\emph{ChatBot}}. Nous espérons que cette méthode fonctionne bien avec un API 23.
+
+\subsubsection*{Afficher un calendrier au sein de l'application}
+
+\indent Nous avons essayé d'afficher un calendrier sans lancer l'applcation Agenda d'appareil. Cependant, il faut utiliser une classe de vue \textbf{\emph{CalendarView}} qui exigait un API 21 ou supérieur.
+
+\subsubsection{Contenu AIML avec accent}
+
+\indent Le problème d'accent dans le code AIML était rencontré par les étudiants précédents et nous-même. Nous ne pouvions pas envoyer une requête avec accent au serveur Pandorabots. La réponse du serveur contenait un caractère incoonu au lieu d'une lettre avec accent. Nous avons testé l'url de requête dans un navigateur pour debugger. Nous avons essayé de modifier l'url à la main. Nous avons aussi fait une recherche sur l'Internet. Au final, nous avons trouvé que c'était le problème d'encodage d'url. En effet, l'url ne devait pas contenir les caractères avec accent. Il faut les encoder avant de les envoyer.
+
+\indent La classe \textbf{\emph{java.net.URLEncoder}} permet d'encoder une chaîne d'url avec certain encodage. Cette classe transfère tous les caractères qui ne sont pas "a-z", "A-Z" ou "0-9" en code hexadécimale d'UTF-8. Cependant, nous avions encore besoins de "\textbf{:}", "\textbf{/}", "\textbf{?}", "\textbf{=}" et "\textbf{\&}" qui ne doivent pas être encodé. Nous avons effectué ces encodages dans la méthode \textbf{\emph{saveXmlInString(String urlString)}} de la classe \textbf{\emph{RetrieveXMLTask}}. 
+
+\indent Avec l'encodage d'url, nous réussissions à utilser les accents dans les fichier AIML.
 
 \newpage
