@@ -41,13 +41,13 @@ En suivant ce guide, nous avons réussi de signer et lancer notre application.
 
 \indent L'appareil que nous possédions pour réaliser ce projet est de l'API 19. Néanmoins, nous avons eu deux foncitionnalités qui demandait l'API de niveau plus haut.
 
-\subsubsection*{Supprimer un réveil}
+\subsubsection{Supprimer un réveil}
 
 \indent Comme nous avons dit dans le Chapitre 5, pour supprimer un réveil, il faut utiliser une constante \textbf{\emph{AlarmClock.ACTION$_-$DISMISS$_-$ALARM}}. Cette dernière exigait un API 23 ou supérieur. En conséquence, nous ne pouvions pas réaliser cette fonctionnalité. Nous avons quand même développé la méthode \textbf{\emph{deleteAnAlarm(String oobContent)}} dans la classe \textbf{\emph{ChatBot}}. Nous espérons que cette méthode fonctionne bien avec un API 23.
 
-\subsubsection*{Afficher un calendrier au sein de l'application}
+\subsubsection{Afficher un calendrier au sein de l'application}
 
-\indent Nous avons essayé d'afficher un calendrier sans lancer l'applcation Agenda d'appareil. Cependant, il faut utiliser une classe de vue \textbf{\emph{CalendarView}} qui exigait un API 21 ou supérieur.
+\indent Quand nous travaillions sur la partie gestion de calendrier, nous avons essayé d'afficher un calendrier sans lancer l'applcation Agenda d'appareil. Si nous avons réussi de réaliser cette fonctionnalité, nous pouvons afficher tous les événements dans notre application plus clairement. Cependant, il faut utiliser une classe de vue \textbf{\emph{CalendarView}} qui exigait un API 21 ou supérieur. Avec cette difficulté, nous avons décidé d'abandonner cettre fonctionnalité. Finalement, nous avons réalisé la fonctionnalité "affichant l'événement plus proche" dans notre application. 
 
 \subsubsection{Contenu AIML avec accent}
 
