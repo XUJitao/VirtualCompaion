@@ -1,54 +1,54 @@
 \select@language {french}
-\contentsline {section}{Introduction}{2}
-\contentsline {section}{\numberline {1}Analsye des besoins}{2}
-\contentsline {subsection}{\numberline {1.1}Liste des besoins}{2}
-\contentsline {subsection}{\numberline {1.2}Rendus}{2}
-\contentsline {section}{\numberline {2}Sp\IeC {\'e}cification}{3}
-\contentsline {subsection}{\numberline {2.1}Faisabilit\IeC {\'e} du projet}{3}
-\contentsline {subsection}{\numberline {2.2}Analyse Descendante}{3}
-\contentsline {section}{\numberline {3}Conception Pr\IeC {\'e}liminaire}{4}
-\contentsline {subsection}{\numberline {3.1}Diagramme de cas d'utilisation}{4}
-\contentsline {subsection}{\numberline {3.2}Diagrammes de Sequence}{4}
-\contentsline {subsection}{\numberline {3.3}Signatures Partie Chatbot}{5}
-\contentsline {subsection}{\numberline {3.4}Signatures Partie ToolManager}{6}
-\contentsline {section}{\numberline {4}Conception D\IeC {\'e}taill\IeC {\'e}e}{7}
-\contentsline {subsection}{\numberline {4.1}addAnAlarme}{7}
-\contentsline {subsection}{\numberline {4.2}sendSMS}{8}
-\contentsline {subsection}{\numberline {4.3}setAppointement}{9}
-\contentsline {subsection}{\numberline {4.4}setBeginTimeAndGetTitle}{9}
-\contentsline {subsection}{\numberline {4.5}getNextEvent}{10}
-\contentsline {section}{\numberline {5}D\IeC {\'e}veloppememnt}{12}
-\contentsline {subsection}{\numberline {5.1}Mis en place des diff\IeC {\'e}rentes foncitonnalit\IeC {\'e}s}{12}
-\contentsline {subsubsection}{\numberline {5.1.1}Lancer Google Map}{12}
-\contentsline {subsubsection}{\numberline {5.1.2}Envoyer SMS}{12}
-\contentsline {subsubsection}{\numberline {5.1.3}Ajouter et Supprimer un r\IeC {\'e}veil}{13}
-\contentsline {subsubsection}{\numberline {5.1.4}Gestion du rendez-vous}{13}
-\contentsline {subsection}{\numberline {5.2}Ajout plusieurs cat\IeC {\'e}gories de questions/r\IeC {\'e}ponses sur le site Pandorabots}{14}
-\contentsline {subsubsection}{\numberline {5.2.1}Ajouter un r\IeC {\'e}veil sans r\IeC {\'e}p\IeC {\'e}tition}{14}
-\contentsline {subsubsection}{\numberline {5.2.2}Ajouter un r\IeC {\'e}veil avec r\IeC {\'e}p\IeC {\'e}tition}{14}
-\contentsline {subsubsection}{\numberline {5.2.3}Supprimer un r\IeC {\'e}veil}{14}
-\contentsline {subsubsection}{\numberline {5.2.4}Ajouter un rendez-vous}{15}
-\contentsline {subsubsection}{\numberline {5.2.5}Supprimer un rendez-vous}{15}
-\contentsline {subsubsection}{\numberline {5.2.6}R\IeC {\'e}aliser une recherche en Google Map}{15}
-\contentsline {subsubsection}{\numberline {5.2.7}Envoyer un sms}{15}
-\contentsline {subsection}{\numberline {5.3}Modification de l'interface d'utilisateur}{15}
-\contentsline {subsection}{\numberline {5.4}Changement du personnage}{16}
-\contentsline {section}{\numberline {6}Probl\IeC {\`e}mes rencontr\IeC {\'e}s et r\IeC {\'e}solutions}{17}
-\contentsline {subsection}{\numberline {6.1}Probl\IeC {\`e}mes avant le d\IeC {\'e}veloppement}{17}
-\contentsline {subsubsection}{\numberline {6.1.1}Probl\IeC {\`e}me de signature de d\IeC {\'e}veloppeur}{17}
-\contentsline {subsubsection}{\numberline {6.1.2}La connection avec le serveur Pandorabots}{17}
-\contentsline {subsubsection}{\numberline {6.1.3}La gestion du socket}{17}
-\contentsline {subsection}{\numberline {6.2}Difficult\IeC {\'e}s en d\IeC {\'e}veloppant les fonctionnalit\IeC {\'e}s}{18}
-\contentsline {subsubsection}{\numberline {6.2.1}L'activit\IeC {\'e} Map}{18}
-\contentsline {subsubsection}{\numberline {6.2.2}Probl\IeC {\`e}mes avec le niveau d'API Android}{18}
-\contentsline {subsubsection}{\numberline {6.2.3}Supprimer un r\IeC {\'e}veil}{18}
-\contentsline {subsubsection}{\numberline {6.2.4}Afficher un calendrier au sein de l'application}{18}
-\contentsline {subsubsection}{\numberline {6.2.5}Contenu AIML avec accent}{19}
-\contentsline {section}{\numberline {7}Ce que nous ...}{20}
-\contentsline {subsection}{\numberline {7.1}... Aurions du faire}{20}
-\contentsline {subsubsection}{\numberline {7.1.1}Apprentissage au chatbot}{20}
-\contentsline {subsection}{\numberline {7.2}... pourrions faire par la suite}{21}
-\contentsline {subsubsection}{\numberline {7.2.1}R\IeC {\'e}aliser les fonctionnalit\IeC {\'e}s avec l'API propre}{21}
-\contentsline {subsubsection}{\numberline {7.2.2}Am\IeC {\'e}liorer l'interface d'utilisateur encore}{21}
-\contentsline {subsubsection}{\numberline {7.2.3}Ajout des fonctionnalit\IeC {\'e}s quotidiennes}{22}
-\contentsline {subsubsection}{\numberline {7.2.4}Gestion de la langue du compagnon virtuel}{22}
+\contentsline {section}{Introduction}{2}{section*.1}
+\contentsline {section}{\numberline {1}Analsye des besoins}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Liste des besoins}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Rendus}{2}{subsection.1.2}
+\contentsline {section}{\numberline {2}Sp\IeC {\'e}cification}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Faisabilit\IeC {\'e} du projet}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Analyse Descendante}{3}{subsection.2.2}
+\contentsline {section}{\numberline {3}Conception Pr\IeC {\'e}liminaire}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Diagramme de cas d'utilisation}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Diagrammes de Sequence}{5}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Signatures Partie Chatbot}{6}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Signatures Partie ToolManager}{7}{subsection.3.4}
+\contentsline {section}{\numberline {4}Conception D\IeC {\'e}taill\IeC {\'e}e}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}addAnAlarme}{8}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}sendSMS}{9}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}setAppointement}{10}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}setBeginTimeAndGetTitle}{10}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}getNextEvent}{12}{subsection.4.5}
+\contentsline {section}{\numberline {5}D\IeC {\'e}veloppememnt}{14}{section.5}
+\contentsline {subsection}{\numberline {5.1}Mis en place des diff\IeC {\'e}rentes foncitonnalit\IeC {\'e}s}{14}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Lancer Google Map}{14}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}Envoyer SMS}{14}{subsubsection.5.1.2}
+\contentsline {subsubsection}{\numberline {5.1.3}Ajouter et Supprimer un r\IeC {\'e}veil}{15}{subsubsection.5.1.3}
+\contentsline {subsubsection}{\numberline {5.1.4}Gestion du rendez-vous}{15}{subsubsection.5.1.4}
+\contentsline {subsection}{\numberline {5.2}Ajout plusieurs cat\IeC {\'e}gories de questions/r\IeC {\'e}ponses sur le site Pandorabots}{16}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}Ajouter un r\IeC {\'e}veil sans r\IeC {\'e}p\IeC {\'e}tition}{16}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Ajouter un r\IeC {\'e}veil avec r\IeC {\'e}p\IeC {\'e}tition}{16}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}Supprimer un r\IeC {\'e}veil}{17}{subsubsection.5.2.3}
+\contentsline {subsubsection}{\numberline {5.2.4}Ajouter un rendez-vous}{17}{subsubsection.5.2.4}
+\contentsline {subsubsection}{\numberline {5.2.5}Supprimer un rendez-vous}{17}{subsubsection.5.2.5}
+\contentsline {subsubsection}{\numberline {5.2.6}R\IeC {\'e}aliser une recherche en Google Map}{17}{subsubsection.5.2.6}
+\contentsline {subsubsection}{\numberline {5.2.7}Envoyer un sms}{17}{subsubsection.5.2.7}
+\contentsline {subsection}{\numberline {5.3}Modification de l'interface d'utilisateur}{18}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Changement du personnage}{18}{subsection.5.4}
+\contentsline {section}{\numberline {6}Probl\IeC {\`e}mes rencontr\IeC {\'e}s et r\IeC {\'e}solutions}{19}{section.6}
+\contentsline {subsection}{\numberline {6.1}Probl\IeC {\`e}mes avant le d\IeC {\'e}veloppement}{19}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}Probl\IeC {\`e}me de signature de d\IeC {\'e}veloppeur}{19}{subsubsection.6.1.1}
+\contentsline {subsubsection}{\numberline {6.1.2}La connection avec le serveur Pandorabots}{19}{subsubsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.3}La gestion du socket}{19}{subsubsection.6.1.3}
+\contentsline {subsection}{\numberline {6.2}Difficult\IeC {\'e}s en d\IeC {\'e}veloppant les fonctionnalit\IeC {\'e}s}{20}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}L'activit\IeC {\'e} Map}{20}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Probl\IeC {\`e}mes avec le niveau d'API Android}{20}{subsubsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.3}Supprimer un r\IeC {\'e}veil}{20}{subsubsection.6.2.3}
+\contentsline {subsubsection}{\numberline {6.2.4}Afficher un calendrier au sein de l'application}{21}{subsubsection.6.2.4}
+\contentsline {subsubsection}{\numberline {6.2.5}Contenu AIML avec accent}{21}{subsubsection.6.2.5}
+\contentsline {section}{\numberline {7}Ce que nous ...}{22}{section.7}
+\contentsline {subsection}{\numberline {7.1}... Aurions du faire}{22}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}Apprentissage au chatbot}{22}{subsubsection.7.1.1}
+\contentsline {subsection}{\numberline {7.2}... pourrions faire par la suite}{23}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}R\IeC {\'e}aliser les fonctionnalit\IeC {\'e}s avec l'API propre}{23}{subsubsection.7.2.1}
+\contentsline {subsubsection}{\numberline {7.2.2}Am\IeC {\'e}liorer l'interface d'utilisateur encore}{24}{subsubsection.7.2.2}
+\contentsline {subsubsection}{\numberline {7.2.3}Ajout des fonctionnalit\IeC {\'e}s quotidiennes}{24}{subsubsection.7.2.3}
+\contentsline {subsubsection}{\numberline {7.2.4}Gestion de la langue du compagnon virtuel}{24}{subsubsection.7.2.4}

@@ -8,8 +8,12 @@
 \usepackage{xcolor}
 \usepackage{listingsutf8}
 \usepackage{geometry}
+\usepackage[colorlinks,
+			linkcolor=black,
+			anchorcolor=blue,
+			citecolor=green]{hyperref}
 
-\geometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
+\geometry{left=2cm, right=2cm, top=3cm, bottom=3cm}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
 
 \lstset{

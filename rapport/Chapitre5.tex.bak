@@ -4,7 +4,8 @@
 
 \subsection{Mis en place des différentes foncitonnalités}
 	
-\indent Comme nous l'avons dit précédemment, nous avons suivi un cours sur \emph{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les foncition suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent. Les cinq premières fonctions ont été implémenté dans la classe Chatbot, les deux suivantes dans la classe ToolManager.\\
+\indent Comme nous l'avons dit précédemment, nous avons suivi un cours sur \url{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les foncition suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent. Les cinq premières fonctions ont été implémenté dans la classe Chatbot, les deux suivantes dans la classe ToolManager.
+
 \indent Toutes les foncitions sont appelées dans la méthode \textbf{\emph{process$_-$oobContent(String oobContent, String textToSpeak)}} sauf getNextEvent et setNextEvent. Le paramètre oobContent contient l'information retourner par le serveur Pandorabots entre "<oob>" et "</oob>". Le deuxième "textToSpeak" ne concerne pas nos fonctions.
 
 \subsubsection{Lancer Google Map}
@@ -51,7 +52,7 @@
 
 \subsection{Ajout plusieurs catégories de questions/réponses sur le site Pandorabots}
 
-\indent Nous continuions à utiliser le compte créé par les étudiants précédents pour ajouter des catégories de questions/réponses sur \textbf{\emph{https://www.pandorabots.com/botmaster/fr/home}}, avec les identifiants suivants:
+\indent Nous continuions à utiliser le compte créé par les étudiants précédents pour ajouter des catégories de questions/réponses sur \url{https://www.pandorabots.com/botmaster/fr/home}, avec les identifiants suivants:
 
 \begin{center}
 	Email : \textbf{\emph{alexandre.levacher@insa-rouen.fr}}\\
@@ -141,7 +142,7 @@
 <category><pattern>_ENVOYER UN SMS POUR * POUR DIRE *</pattern><template><oob><send><people><star index="1"/></people><message><star index="2"/></message></send></oob></template></category>
 \end{lstlisting}
 
-\begin{lstlisting}[frame=none,aboveskip=0.5em]
+\begin{lstlisting}[frame=none,aboveskip=0.5em,belowskip=1.5em]
 <category><pattern>_ENVOIE UN SMS POUR * POUR DIRE *</pattern><template><oob><send><people><star index="1"/></people><message><star index="2"/></message></send></oob></template></category>
 \end{lstlisting}
 
@@ -152,3 +153,5 @@
 
 \subsection{Changement du personnage}
 \indent Nous avons choisi un personnage d'animation de Microsoft qui est open source. Nous avons téléchargé l'ensemble d'image du personnage tout d'abord. Puis, nous avons utilisé l'outil pour le couper par chaque action. Pour différentes actions, nous avons proposé un temp de continu. Avec ces images, nous avons réalisé les animations  suivantes: saluer, écouter, trouver une  erreur, parler, rire, répondre, etc. Ce changement du personnage améliore notre l'interface d'utilisateur, de plus, il nous permet d'avoir plus d'espace sur l'écran pour afficher d'autres informations. Nous pensons que c'est un changement indispensable.
+
+\newpage
