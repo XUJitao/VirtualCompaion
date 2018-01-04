@@ -52,3 +52,4 @@
 \contentsline {subsubsection}{\numberline {7.2.2}Am\IeC {\'e}liorer l'interface d'utilisateur encore}{24}{subsubsection.7.2.2}
 \contentsline {subsubsection}{\numberline {7.2.3}Ajout des fonctionnalit\IeC {\'e}s quotidiennes}{24}{subsubsection.7.2.3}
 \contentsline {subsubsection}{\numberline {7.2.4}Gestion de la langue du compagnon virtuel}{24}{subsubsection.7.2.4}
+\contentsline {subsection}{\numberline {7.3}Conclusion}{25}{subsection.7.3}
