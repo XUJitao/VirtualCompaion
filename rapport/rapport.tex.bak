@@ -99,10 +99,13 @@ Alexandre \textsc{PAUCHET}
 
 \end{center}
 \end{titlepage}
+\newpage
 
 \tableofcontents
 
 \addcontentsline{toc}{section}{Introduction}
+
+
 \newpage
 
 \input{Introduction.tex}
@@ -115,8 +118,10 @@ Alexandre \textsc{PAUCHET}
 \input{Chapitre4.tex}
 \input{Chapitre5.tex}
 \input{Chapitre6.tex}
-\input{Chapitre8.tex}
-
-
+\input{Chapitre7.tex}
+\input{Conclusion.tex}
+\input{Bibliographie.tex}
+\addcontentsline{toc}{section}{Conclusion}
+\addcontentsline{toc}{section}{Bibliographie}
 
 \end{document}
