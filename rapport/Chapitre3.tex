@@ -19,7 +19,9 @@
 \newpage
 
 \subsection{Signatures Partie Chatbot}
-procédure setAppointement (E/S Gcal : GestionCalendar, E oobContent : String, operationType : String)\\
+Dans cette section, \textbf{\emph{oobContent}} est une chaine de caractères retournée par pandorabot qui contient une étiquette \textbf{\emph{oob}} et des informations de la demande d'utilisateurs.\\
+\indent procédure setAppointement (E/S Gcal : GestionCalendar, E oobContent : String, operationType : String)\\
+\indent Classe \textbf{\emph{GestionCalendar}} est le module de gestion des fonctions liées au traitement du calendrier.\\
 \indent fonction setBeginTimeAndGetTitle (E oobContent : String, beginTime : Calendar, operationType : String) : String\\
 \indent procédure googleQuery (E/S googleSearchText : String)\\
 \indent procédure launchApp (E app : String)\\
