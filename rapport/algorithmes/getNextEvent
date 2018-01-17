@@ -4,10 +4,10 @@ début
 	GestionCalendar gc <- new GestionCalendar(context)
 	Cursor cursor <- gc.getEvents()
 	mettre le curseur au premier
-	Entier eventNumber <- nombre d'événement
+	Entier eventNumber <- nombre d'événements
 	si eventNumber > 0
 		StringBuilder sb = new StringBuilder
-		Entier Long[] eventMillis <- tableau d'entité long à la taille eventNumber + 10
+		Entier Long[] eventMillis <- tableau d'entités long de taille eventNumber + 10
 		Entier j <- 0
 		répéter
 			eventMillis[j] = le temps de début d'événement j

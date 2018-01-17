@@ -73,7 +73,7 @@
 
 \HRule \\[1.5cm]
 
-\textsc{Institut national des sciences appliquées de Rouen}\\[1.5cm]
+\textsc{Institut national des sciences appliquées de Rouen Normandie}\\[1.5cm]
 
 % Author and supervisor
 \begin{minipage}{0.4\textwidth}
@@ -120,8 +120,7 @@ Alexandre \textsc{PAUCHET}
 \input{Chapitre6.tex}
 \input{Chapitre7.tex}
 \input{Conclusion.tex}
-\input{Bibliographie.tex}
 \addcontentsline{toc}{section}{Conclusion}
 \addcontentsline{toc}{section}{Bibliographie}
-
+\input{Bibliographie.tex}
 \end{document}

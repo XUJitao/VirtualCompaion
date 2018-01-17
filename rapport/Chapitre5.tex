@@ -1,30 +1,32 @@
 \section*{Chapitre 5}
-\section{Développememnt}
-	La partie développement s'est déroulée en quatre sous parties. Tout d'abord, nous nous sommes informés des méthodes proposées sur Android pour mettre en place les fonctionnalités précisés dans le Chapitre 4. Ensuite nous avons ajouté plusieurs catégories de questions/réponses sur le site Pandorabots pour faire fonctionner nos fonctionnalités. Enfin, nous avons modifié l'interface d'utilisateurs de l'application pour améliorer l'expérience d'utilisation. Dans ce cas là, Nous avons changé le personnage d'animation pour afficher plus d'informations sur l'activité principale. Ces quatre sous parties ont été implémenté itérativement tout au long du développement.
+\section{Développement}
+	La partie développement s'est déroulée en quatre sous parties. Tout d'abord, nous nous sommes informés des méthodes proposées sur Android pour mettre en place les fonctionnalités précisés dans le Chapitre 4. Ensuite nous avons ajouté plusieurs catégories de questions/réponses sur le site Pandorabots pour faire fonctionner nos fonctionnalités. Enfin, nous avons modifié l'interface utilisateur de l'application pour améliorer l'expérience d'utilisation. Dans ce cas là, Nous avons changé le personnage d'animation pour pouvoir afficher davantage d'informations sur l'activité principale. Ces quatre sous parties ont été implémentées itérativement tout au long du développement.
 
-\subsection{Mis en place des différentes foncitonnalités}
+\subsection{Mis en place des différentes fonctionnalités}
 	
-\indent Comme nous l'avons dit précédemment, nous avons suivi un cours sur \url{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les foncition suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent. Les cinq premières fonctions ont été implémenté dans la classe Chatbot, les deux suivantes dans la classe ToolManager.
+\indent Comme nous l'avons dit précédemment, nous avons suivi un cours sur \url{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les fonction suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent. Les cinq premières fonctions ont été implémentées dans la classe Chatbot, les deux suivantes dans la classe ToolManager afin de renouvler le prochain événenment en temps réel.
 
-\indent Toutes les foncitions sont appelées dans la méthode \textbf{\emph{process$_-$oobContent(String oobContent, String textToSpeak)}} sauf getNextEvent et setNextEvent. Le paramètre oobContent contient l'information retourner par le serveur Pandorabots entre "<oob>" et "</oob>". Le deuxième "textToSpeak" ne concerne pas nos fonctions.
+\indent Toutes les fonctions sont appelées dans la méthode \textbf{\emph{process$_-$oobContent(String oobContent, String textToSpeak)}} sauf \textbf{\emph{getNextEvent}} et \textbf{\emph{setNextEvent}}. Le paramètre "oobContent" contient l'information retourner par le serveur Pandorabots entre "<oob>" et "</oob >". Le deuxième "textToSpeak" ne concerne pas nos fonctions.
 
 \subsubsection{Lancer Google Map}
 
-\indent Premièrement, selon notre recherche, toutes les chaînes de caractère transmises aux intentions Google Maps doivent être encodées sous forme d'URI. Dans notre fonction, il faut remplacer tous les espaces ' ' par "\%20" ou '+'. Nous avons choisi de les remplacer par '+'. Ensuite, nous avons créé un instance de \textbf{\emph{Intent}}, qui permet de lancer une application depuis l'activité actuelle. 
+\indent Premièrement, selon notre recherche, toutes les chaînes de caractère transmises à l'intention de Google Maps doivent être encodées sous forme d'URI. Dans notre fonction, il faut remplacer tous les espaces ' ' par "\%20" ou '+'. Nous avons choisi de les remplacer par '+'. Ensuite, nous avons créé un instance de \textbf{\emph{Intent}}, qui permet de lancer une application depuis l'activité actuelle. 
 
-\indent En effet, nous avions essayé d'afficher la carte de Google Map dans notre application, néanmoins elle ne garde pas tous les fonctionnalité de l'application Google Map. Nous avons donc décidé de l'abandonner. Nous allons le préciser dans la chapitre 6.
+\indent En effet, nous avions essayé d'afficher la carte de Google Map dans notre application, néanmoins elle ne garde pas toutes les fonctionnalités de l'application Google Map. Nous avons donc décidé de l'abandonner. Nous allons le préciser dans la chapitre 6.
 
 \subsubsection{Envoyer SMS}
-\indent Nous proposons deux types de destination du sms : un numéro de téléphone mobile ou un correspondant dans le carnet d'adresses.  Pour les réaliser, il faut toujours déterminer le type de première caractère de destination. Si c'est une lettre, donc nous prenons le mode 'correspondant', sinon, nous prenons le mode 'numéro de téléphone mobile'. Grâce au instance \textbf{\emph{Intent}}, notre fonction pouvons lire le String qui décrit la destination du sms. 
+
+\indent Nous proposons deux types de destination du sms : un numéro de téléphone mobile ou un correspondant dans le carnet d'adresses.  Pour les réaliser, il faut toujours déterminer le type de premier caractère de destination. Si c'est une lettre, donc nous prenons le mode 'correspondant', sinon, nous prenons le mode 'numéro de téléphone mobile'. Grâce au instance \textbf{\emph{Intent}}, notre fonction pouvons lire le String qui décrit la destination du sms. 
 
 \indent Si nous sommes tombé dans le deuxième mode, nous allons chercher le numéro de téléphone mobile dans le carnet d'adresses, et puis envoyer le sms par le numéro.\\
 
-\indent Pareil, nous écrivons le contenu du sms par l'instance \textbf{\emph{Intent}}.
+\indent Identiquement, nous écrivons le contenu du sms par l'instance \textbf{\emph{Intent}}.
 	
 \subsubsection{Ajouter et Supprimer un réveil}
+
 \indent Idée principale :
 
-\indent Pour ajouter un réveil, simplement, nous déterminons la date et l'heure du réveil avec la reconnaissance vocale. Ensuite, nous utilisons toujours un instance de \textbf{\emph{Intent}} qui nous permet de réaliser l'ajout des informations pour un réveil. Après, c'est important de déterminer la répétition du réveil. Par différents chaines de caractères, nous trouvrons la demande de répétition d'utilisateur. Finalement, nous finisons l'ajout du réveil.
+\indent Pour ajouter un réveil, simplement, nous déterminons la date et l'heure du réveil avec la reconnaissance vocale. Ensuite, nous utilisons toujours un instance de \textbf{\emph{Intent}} qui nous permet de réaliser l'ajout des informations pour un réveil. Après, c'est important de déterminer la répétition du réveil. Par différentes chaînes de caractères, nous trouvrons la demande de répétition d'utilisateur. Finalement, nous finisons l'ajout du réveil.
 
 \indent Pour supprimer un réveil, c'est plus simple. Nous cherchons la date et l'heure du réveil et le supprimer directement.
 
@@ -35,22 +37,23 @@
 	<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 	\end{lstlisting}
 
-\indent Nous avons implémenté la fonction \textbf{\emph{deleteAnAlarm(String oobContent)}}. Pour réaliser la fonctionnalité, nous devions utiliser une constante \textbf{\emph{AlarmClock.ACTION$_-$DISMISS$_-$ALARM}} qui a besoin d'une API au niveau supérieur ou égal à 23. Cependant, les appareils que nous avions ne possédait qu'au niveau 19. En conséquence, nous ne pourrions pas réaliser cette fonctionnalité.Nous allons le préciser dans la chapitre 6.
+\indent Nous avons implémenté la fonction \textbf{\emph{deleteAnAlarm(String oobContent)}}. Pour réaliser la fonctionnalité, nous devions utiliser une constante \textbf{\emph{AlarmClock.ACTION$_-$DISMISS $_-$ALARM}} qui a besoin d'une API à la version supérieur ou égal à 23. Cependant, les appareils que nous avions ne possédait qu'à la version 19. En conséquence, nous ne pourrions pas réaliser cette fonctionnalité. Nous allons le préciser dans la chapitre 6.
 
 \subsubsection{Gestion du rendez-vous}
+
 \subsubsection*{Ajouter et Supprimer un rendez-vous}
 
 \indent Nous avons modifié la version précédente pour intégrer le traitement de gestion de calendrier au serveur externe, Pandorabots. Nous avons gardé les méthodes pour initialiser l'instance de \textbf{\emph{GestionCalendar}} et les méthodes \textbf{\emph{ajouterRDV(String titre, Calendar beginTime, Calendar endTime)}} et \textbf{\emph{supprimerRDV(String titre, Calendar beginDate,Calendar endDate)}}. Ces deux dernières nous permet d'ajouter ou de supprimer un rendez-vous dans l'agenda de l'appareil.
 
-\indent Nous avons créer une méthode \textbf{\emph{setAppointement(GestionCalendar Gcal, String oobContent, String operationType)}} qui nous permet de distinguer l'ajout et la suppression du rendez-vous. Pour pouvoir utiliser les méthodes déjà existantes, il faut avoir le titre, la date de début et la date de fin du rendez-vous. Pour simplifier le traitement, nous avons créer une méthode \textbf{\emph{setBeginTimeAndGetTitle(String oobContent, Calendar beginTime, String operationType)}} qui régler la date de début et retourner le titre de rendez-vous en même temps. Dans cette dernière méthode, le paramètre \textbf{\emph{beginTime}} en entrée est la date actuel du système. Nous avons met à défaut toutes les parties de la date commes la date actuel. Nous avons vérifié la chaîne \textbf{\emph{oobContent}} dans l'ordre suivantes : jour, mois, an, heure, minute, titre. Pour chaque partie précisée, nous avons met à jour l'information. Si l'utilisateur n'a pas précisé le titre du rendez-vous, le titre par défaut sera une chaîne vide.
+\indent Nous avons créé une méthode \textbf{\emph{setAppointement(GestionCalendar Gcal, String oobContent, String operationType)}} qui nous permet de distinguer l'ajout et la suppression du rendez-vous. Pour pouvoir utiliser les méthodes déjà existantes, il faut avoir le titre, la date de début et la date de fin du rendez-vous. Pour simplifier le traitement, nous avons créé une méthode \textbf{\emph{setBeginTimeAndGetTitle(String oobContent, Calendar beginTime, String operationType)}} qui règle la date de début et retourne le titre de rendez-vous en même temps. Dans cette dernière méthode, le paramètre \textbf{\emph{beginTime}} en entrée est la date actuelle du système. Nous avons mis par défaut toutes les parties de la date comme la date actuelle. Nous avons vérifié la chaîne \textbf{\emph{oobContent}} dans l'ordre suivantes : jour, mois, an, heure, minute, titre. Pour chaque partie précisée, nous avons mis à jour l'information. Si l'utilisateur n'a pas précisé le titre du rendez-vous, le titre par défaut sera une chaîne vide.
 
 \indent La méthode \textbf{\emph{setBeginTimeAndGetTitle}} permet l'utilisateur de ne pas préciser n'importe quelle partie d'une date tant que les informations précisées sont dans l'ordre.
 
 \subsubsection*{Mettre à jour le prochain rendez-vous}
 
-\indent Nous avons aussi supprimé la méthode \textbf{\emph{prochainRDV}} pour créer une nouvelle dans la classe \textbf{\emph{ToolManager}}. La méthode \textbf{\emph{getNextEvent()}} permet de retourner une chaîne de caractère qui contient les informations du prochain rendez-vous. Dans la méthode, nous avons créer un instance de \textbf{\emph{Cursor}} qui peut se déplacer comme un pointeur. Nous cherchions dans la liste d'événement stocké dans l'agenda de l'appareil pour trouver l'événement le plus proche de la date actuel.
+\indent Nous avons aussi supprimé la méthode \textbf{\emph{prochainRDV}} pour créer une nouvelle dans la classe \textbf{\emph{ToolManager}}. La méthode \textbf{\emph{getNextEvent()}} permet de retourner une chaîne de caractères qui contient les informations du prochain rendez-vous. Dans la méthode, nous avons créer un instance de \textbf{\emph{Cursor}} qui peut se déplacer comme un pointeur. Nous cherchions dans la liste d'événements stockés dans l'agenda de l'appareil pour trouver l'événement le plus proche de la date actuelle.
 
-\subsection{Ajout plusieurs catégories de questions/réponses sur le site Pandorabots}
+\subsection{Ajout de plusieurs catégories de questions/réponses sur le site Pandorabots}
 
 \indent Nous continuions à utiliser le compte créé par les étudiants précédents pour ajouter des catégories de questions/réponses sur \url{https://www.pandorabots.com/botmaster/fr/home}, avec les identifiants suivants:
 
@@ -149,9 +152,10 @@
 
 
 \subsection{Modification de l'interface d'utilisateur}
-\indent Premièrement, nous avons séparé le centre de l'interface d'utilisateur à deux partie. La partie gauche affiche les cinq reconnaissaces vocales du voix de l'utilisateur plus possibles. La partie droite affiche la réponse de notre application s'il existe. En bas de l'écran, nous avons ajouté un \textbf{\emph{textField}} pour afficher le prochain événement dans le calendrier. Ce \textbf{\emph{textField}} va se mettre à jour s'il existe un changement d'événement plus proche dans le calendrier grâce à la fonction \textbf{\emph{getNextEvent}}. Autrement, nous avons changé le personnage d'animation. Nous allons parler dans la paragraphe suivante.
+\indent Premièrement, nous avons séparé le centre de l'interface utilisateur aux deux parties. La partie gauche affiche les cinq reconnaissances vocales les plus probables de la voix de l'utilisateur. La partie droite affiche la réponse de notre application si elle existe. En bas de l'écran, nous avons ajouté un \textbf{\emph{textField}} pour afficher le prochain événement dans le calendrier. Ce \textbf{\emph{textField}} va se mettre à jour s'il existe un changement d'événement plus proche dans le calendrier grâce à la fonction \textbf{\emph{getNextEvent}}. Autrement, nous avons changé le personnage d'animation. Nous allons parler dans la paragraphe suivante.
 
 \subsection{Changement du personnage}
-\indent Nous avons choisi un personnage d'animation de Microsoft qui est open source. Nous avons téléchargé l'ensemble d'image du personnage tout d'abord. Puis, nous avons utilisé l'outil pour le couper par chaque action. Pour différentes actions, nous avons proposé un temp de continu. Avec ces images, nous avons réalisé les animations  suivantes: saluer, écouter, trouver une  erreur, parler, rire, répondre, etc. Ce changement du personnage améliore notre l'interface d'utilisateur, de plus, il nous permet d'avoir plus d'espace sur l'écran pour afficher d'autres informations. Nous pensons que c'est un changement indispensable.
+
+\indent Nous avons choisi un personnage d'animation de Microsoft qui est open source. Nous avons téléchargé l'ensemble d'images du personnage tout d'abord. Puis, nous avons utilisé l'outil pour le couper par chaque action. Pour différentes actions, nous avons proposé un temp de continu. Avec ces images, nous avons réalisé les animations  suivantes: saluer, écouter, trouver une  erreur, parler, rire, répondre, etc. Ce changement du personnage améliore notre l'interface d'utilisateur, de plus, il nous permet d'avoir plus d'espace sur l'écran pour afficher d'autres informations. Nous pensons que c'est un changement indispensable.
 
 \newpage

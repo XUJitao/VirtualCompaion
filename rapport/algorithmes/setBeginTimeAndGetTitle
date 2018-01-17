@@ -1,6 +1,6 @@
 fonction SetBeginTimeAndGetTitle(oobContent : String, beginTime : Calendar, operationType : String) : String
 début
-	String date <- Chaine de caractère entre la balise "<eventdate>"
+	String date <- Chaine de caractères entre la balise "<eventdate>"
 	String title <-	chaine vide 
 	Entier day <- 0
 	Entier month <- 0
@@ -36,7 +36,7 @@ début
 	si words[i] est dans months
 		month <- months.get(words[i])
 		i <- i + 1
-	sion
+	sinon
 		month <- beginTime.MONTH
 	finSi
 	si words[i] est un entier
@@ -46,8 +46,8 @@ début
 		year = beginTime.YEAR
 	finSi
 	si oobContent contient la balise "<eventtime>"
-		String time <- Chaine de caractère entre la balise "<eventtime>"
-		String[] hr <- Chaine de caractère séparée par "h"
+		String time <- Chaine de caractères entre la balise "<eventtime>"
+		String[] hr <- Chaine de caractères séparée par "h"
 		si hr[0] est un entier
 			hour <- parseInt(hr[0])
 		sinon
@@ -59,9 +59,9 @@ début
 			minute <- 0
 		finsi
 		si oobContent contient la balise "<event>"
-			title <- Chaine de caractère entre la balise "<event>"
+			title <- Chaine de caractères entre la balise "<event>"
 		sinon
-			title <- Chaine de caractère entre la balise "</eventtime>" et la balise operationType
+			title <- Chaine de caractères entre la balise "</eventtime>" et la balise operationType
 		finsi
 	sinon
 		hour <- beginTime.HOUR
