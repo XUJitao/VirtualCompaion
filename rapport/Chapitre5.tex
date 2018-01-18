@@ -1,6 +1,6 @@
 \section*{Chapitre 5}
 \section{Développement}
-	La partie développement s'est déroulée en trois sous-parties. Tout d'abord, nous nous sommes informés des méthodes proposées sur Android pour mettre en place les fonctionnalités précisés dans le Chapitre 4. Ensuite nous avons ajouté plusieurs catégories de questions/réponses sur le site Pandorabots pour faire fonctionner nos fonctionnalités. Enfin, nous avons modifié l'interface utilisateur de l'application pour améliorer l'expérience d'utilisation. Dans ce cas là, Nous avons changé le personnage d'animation pour pouvoir afficher davantage d'informations sur l'activité principale. Ces trois sous-parties ont été implémentées itérativement tout au long du développement. Nous allons parler de deux sous-parties dernières car les détails et l'algorithme de sous-partie 1 ont été précisés dans le chapitre précedante.
+	La partie développement s'est déroulée en trois sous-parties. Tout d'abord, nous nous sommes informés des méthodes proposées sur Android pour mettre en place les fonctionnalités précisés dans le Chapitre 4. Ensuite, nous avons ajouté plusieurs catégories de questions/réponses sur le site Pandorabots pour faire fonctionner nos fonctionnalités. Enfin, nous avons modifié l'interface utilisateur de l'application pour améliorer l'expérience d'utilisation. Dans ce cas là, Nous avons changé le personnage d'animation pour pouvoir afficher davantage d'informations sur l'activité principale. Ces trois sous-parties ont été implémentées itérativement tout au long du développement. Nous allons parler de deux dernières sous-parties car les détails et l'algorithme de sous-partie 1 ont été précisés dans le chapitre précedent.
 
 \subsection{Ajout de plusieurs catégories de questions/réponses sur le site Pandorabots}
 
@@ -11,8 +11,9 @@
 	Mot de passe : \textbf{\emph{PAOCompagnonVirtuel3}}
 \end{center}
 
-\indent Tout les informations d'une quesion/réponse sont comprises entre \textbf{\emph{<category>}} et \textbf{\emph{</cagegory>}}. La balise \textbf{\emph{<pattern>}} contient la question et la balise \textbf{\emph{<template>}} est la partie de réponse intelligente. La balise \textbf{\emph{<oob>}} se situe dans la balise \textbf{\emph{<template>}}.\\
-\indent S'il y a des étoiles entre la balise \textbf{\emph{<pattern>}}, nous allons ajouter les balises entre la balise \textbf{\emph{<oob>}}, par exemple : \textbf{\emph{<add><star index="1"/></add>}}. La balise \textbf{\emph{<add>}} représente l'action à faire.
+\indent Tout les informations d'une quesion/réponse sont comprises entre \textbf{\emph{<category>}} et \textbf{\emph{</cagegory>}}. La balise \textbf{\emph{<pattern>}} contient la question et la balise \textbf{\emph{<template>}} est la partie de réponse intelligente. La balise \textbf{\emph{<oob>}} se situe dans la balise \textbf{\emph{<template>}}.
+
+\indent Les étoiles "*" sont des expression régulière. S'il y a des étoiles entre la balise \textbf{\emph{<pattern>}}, nous allons ajouter les balises entre la balise \textbf{\emph{<oob>}}, par exemple : \textbf{\emph{<add><star index="1"/></add>}}. La balise \textbf{\emph{<add>}} représente l'action à faire. La balise \textbf{\emph{<star>}} représente les étoiles entre la balise \textbf{\emph{<pattern>}} avec \textbf{\emph{index="1"}} indiquant la prmière étoile. La balise \textbf{\emph{<srai>}} permet de tranférer un pattern vers un notre. Si nous avons la phrase "\textbf{Ajouter un réveil à 10h}", la réponse du serveur contient "\textbf{<pattern>Ajouter un réveil à 10h</pattern><template><oob><alarmclock><add>10h</add></alarmclo ck></oob></template>} ". Le pattern "AJOUTER UN RÉVEIL À *" est rediriger vers le pattern "SONNER POUR *".
 
 \subsubsection{Ajouter un réveil sans répétition}
 \begin{lstlisting}[frame=none,aboveskip=0.5em]

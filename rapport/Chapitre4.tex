@@ -24,7 +24,8 @@
 
 \indent Identiquement, nous écrivons le contenu du sms par l'instance \textbf{\emph{Intent}}.
 
-\indent L'algorithme :
+\indent L'algorithme :\\
+
 \lstinputlisting[caption=sendSMS]{./algorithmes/sendSMS}
 
 	Cette fonction est modifiée selon la fonction \textbf{\emph{makePhoneCall(String oobContent)}}. Le principe d'algorithme reste la même. Nous avons changé ce qui concerne "à appeler" avec ce qui concerne "à envoyer SMS".
@@ -46,7 +47,8 @@
 
 \indent Nous avons implémenté la fonction \textbf{\emph{deleteAnAlarm(String oobContent)}}. Pour réaliser la fonctionnalité, nous devions utiliser une constante \textbf{\emph{AlarmClock.ACTION$_-$DISMISS $_-$ALARM}} qui a besoin d'une API à la version supérieur ou égal à 23. Cependant, les appareils que nous avions ne possédait qu'à la version 19. En conséquence, nous ne pourrions pas réaliser cette fonctionnalité. Nous allons le préciser dans la chapitre 6.
 
-\indent L'algorithme :
+\indent L'algorithme :\\
+
 \lstinputlisting[caption=addAnAlarm]{./algorithmes/addAnAlarm}
 
 \subsubsection{Gestion du rendez-vous}
@@ -59,7 +61,8 @@
 
 \indent La méthode \textbf{\emph{setBeginTimeAndGetTitle}} permet l'utilisateur de ne pas préciser n'importe quelle partie d'une date tant que les informations précisées sont dans l'ordre.
 
-\indent L'algorithme :
+\indent L'algorithme :\\
+
 \lstinputlisting[caption=setAppointement]{./algorithmes/setAppointement}
 
 \lstinputlisting[caption=setBeginTimeAndGetTitle]{./algorithmes/setBeginTimeAndGetTitle}
@@ -67,5 +70,6 @@
 
 \indent Nous avons aussi supprimé la méthode \textbf{\emph{prochainRDV}} pour créer une nouvelle dans la classe \textbf{\emph{ToolManager}}. La méthode \textbf{\emph{getNextEvent()}} permet de retourner une chaîne de caractères qui contient les informations du prochain rendez-vous. Dans la méthode, nous avons créer un instance de \textbf{\emph{Cursor}} qui peut se déplacer comme un pointeur. Nous cherchions dans la liste d'événements stockés dans l'agenda de l'appareil pour trouver l'événement le plus proche de la date actuelle.
 
-\indent L'algorithme :
+\indent L'algorithme :\\
+
 \lstinputlisting[caption=getNextEvent]{./algorithmes/getNextEvent}
