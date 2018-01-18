@@ -25,10 +25,10 @@
 </aiml>
 \end{lstlisting}
 
-\indent C'est un exemple pour vous montrer notre idée principale. Avec cette fonctionnalité, notre chatbot peut aquérir des informations issues l'extérieur.
+\indent C'est un exemple pour montrer notre idée principale. La balise \textbf{\emph{<set name="dog"> <star/> </set>}} permet de stocker la chaîne dans "*", ici "dog", dans la variable au nom de "dog". La balise \textbf{\emph{<get name="dog"/>}} permet de mettre la valeur de la variable "dog" dans le fichier XML de réponse intélligente. Si la première fois utilisateur dis "My dog name is Bob", le serveur va répondre "That is interesting that you have a dog named Bob". La deuxième fois, utilisateur dis "What is my dogs name", la réponse sera "Your dog's name is Bob". Avec cette fonctionnalité, notre chatbot peut aquérir des informations issues l'extérieur. 
 
-\indent Nous avons fait un diagramme de séquence, la FIGURE \ref{fig4}, aussi pour expliquer notre idée. Malheureusement, à cause du manque de temps et de technique, nous n'avons pas réalisé cette fonctionnalité, nous espérons que le groupe suivant pourra la faire. 
-\newpage
+\indent Nous avons fait un diagramme de séquence, la F\begin{footnotesize}IGURE\end{footnotesize} \ref{fig4}, aussi pour expliquer notre idée. Quand utilisateur dis des phrases concernant l'ajout d'un rendez-vous, l'application va vérifier les informations de date de la réponse intélligente. Si cettes dernières sont complètes, l'application va exécuter les étapes suivantes. Sinon, elle va dire une phrase pour demander les informations manquantes et vérifiera la réponse intélligente. Si les informations ne sont pas encore complètes, elle va refaire la même étape jusqu'à elle a toutes les informations. Le serveur Pandorabots sera utilisé pour stocker les informations de chaque demande d'application. Il répondra avec toutes les informations qu'il a stocké. Malheureusement, à cause du manque de temps et de technique, nous n'avons pas réalisé cette fonctionnalité. Nous espérons que le groupe suivant pourra la faire. 
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1\linewidth]{./diagrammes/SequenceDiagram_multi_conversation.jpeg}
