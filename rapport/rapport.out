@@ -11,45 +11,40 @@
 \BOOKMARK [2][-]{subsection.3.3}{Signatures Partie Chatbot}{section.3}% 11
 \BOOKMARK [2][-]{subsection.3.4}{Signatures Partie ToolManager}{section.3}% 12
 \BOOKMARK [1][-]{section.4}{Conception D\351taill\351e}{}% 13
-\BOOKMARK [2][-]{subsection.4.1}{addAnAlarme}{section.4}% 14
-\BOOKMARK [2][-]{subsection.4.2}{sendSMS}{section.4}% 15
-\BOOKMARK [2][-]{subsection.4.3}{setAppointement}{section.4}% 16
-\BOOKMARK [2][-]{subsection.4.4}{setBeginTimeAndGetTitle}{section.4}% 17
-\BOOKMARK [2][-]{subsection.4.5}{getNextEvent}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.1}{Mis en place des diff\351rentes fonctionnalit\351s}{section.4}% 14
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Lancer Google Map}{subsection.4.1}% 15
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Envoyer SMS}{subsection.4.1}% 16
+\BOOKMARK [3][-]{subsubsection.4.1.3}{Ajouter et Supprimer un r\351veil}{subsection.4.1}% 17
+\BOOKMARK [3][-]{subsubsection.4.1.4}{Gestion du rendez-vous}{subsection.4.1}% 18
 \BOOKMARK [1][-]{section.5}{D\351veloppement}{}% 19
-\BOOKMARK [2][-]{subsection.5.1}{Mis en place des diff\351rentes fonctionnalit\351s}{section.5}% 20
-\BOOKMARK [3][-]{subsubsection.5.1.1}{Lancer Google Map}{subsection.5.1}% 21
-\BOOKMARK [3][-]{subsubsection.5.1.2}{Envoyer SMS}{subsection.5.1}% 22
-\BOOKMARK [3][-]{subsubsection.5.1.3}{Ajouter et Supprimer un r\351veil}{subsection.5.1}% 23
-\BOOKMARK [3][-]{subsubsection.5.1.4}{Gestion du rendez-vous}{subsection.5.1}% 24
-\BOOKMARK [2][-]{subsection.5.2}{Ajout de plusieurs cat\351gories de questions/r\351ponses sur le site Pandorabots}{section.5}% 25
-\BOOKMARK [3][-]{subsubsection.5.2.1}{Ajouter un r\351veil sans r\351p\351tition}{subsection.5.2}% 26
-\BOOKMARK [3][-]{subsubsection.5.2.2}{Ajouter un r\351veil avec r\351p\351tition}{subsection.5.2}% 27
-\BOOKMARK [3][-]{subsubsection.5.2.3}{Supprimer un r\351veil}{subsection.5.2}% 28
-\BOOKMARK [3][-]{subsubsection.5.2.4}{Ajouter un rendez-vous}{subsection.5.2}% 29
-\BOOKMARK [3][-]{subsubsection.5.2.5}{Supprimer un rendez-vous}{subsection.5.2}% 30
-\BOOKMARK [3][-]{subsubsection.5.2.6}{R\351aliser une recherche en Google Map}{subsection.5.2}% 31
-\BOOKMARK [3][-]{subsubsection.5.2.7}{Envoyer un sms}{subsection.5.2}% 32
-\BOOKMARK [2][-]{subsection.5.3}{Modification de l'interface d'utilisateur}{section.5}% 33
-\BOOKMARK [2][-]{subsection.5.4}{Changement du personnage}{section.5}% 34
-\BOOKMARK [1][-]{section.6}{Probl\350mes rencontr\351s et r\351solutions}{}% 35
-\BOOKMARK [2][-]{subsection.6.1}{Probl\350mes avant le d\351veloppement}{section.6}% 36
-\BOOKMARK [3][-]{subsubsection.6.1.1}{Probl\350me de signature de d\351veloppeur}{subsection.6.1}% 37
-\BOOKMARK [3][-]{subsubsection.6.1.2}{La connection avec le serveur Pandorabots}{subsection.6.1}% 38
-\BOOKMARK [3][-]{subsubsection.6.1.3}{Le probl\350me de protocole SSL}{subsection.6.1}% 39
-\BOOKMARK [2][-]{subsection.6.2}{Difficult\351s en d\351veloppant les fonctionnalit\351s}{section.6}% 40
-\BOOKMARK [3][-]{subsubsection.6.2.1}{L'activit\351 Map}{subsection.6.2}% 41
-\BOOKMARK [3][-]{subsubsection.6.2.2}{Probl\350mes avec le niveau d'API Android}{subsection.6.2}% 42
-\BOOKMARK [3][-]{subsubsection.6.2.3}{Supprimer un r\351veil}{subsection.6.2}% 43
-\BOOKMARK [3][-]{subsubsection.6.2.4}{Afficher un calendrier au sein de l'application}{subsection.6.2}% 44
-\BOOKMARK [3][-]{subsubsection.6.2.5}{Contenu AIML avec accent}{subsection.6.2}% 45
-\BOOKMARK [1][-]{section.7}{Ce que nous ...}{}% 46
-\BOOKMARK [2][-]{subsection.7.1}{... Aurions d\373 faire}{section.7}% 47
-\BOOKMARK [3][-]{subsubsection.7.1.1}{Apprentissage du chatbot}{subsection.7.1}% 48
-\BOOKMARK [2][-]{subsection.7.2}{... pourrions faire par la suite}{section.7}% 49
-\BOOKMARK [3][-]{subsubsection.7.2.1}{R\351aliser les fonctionnalit\351s avec l'API propre}{subsection.7.2}% 50
-\BOOKMARK [3][-]{subsubsection.7.2.2}{Am\351liorer l'interface d'utilisateur encore}{subsection.7.2}% 51
-\BOOKMARK [3][-]{subsubsection.7.2.3}{Ajout des fonctionnalit\351s quotidiennes}{subsection.7.2}% 52
-\BOOKMARK [3][-]{subsubsection.7.2.4}{Gestion de la langue du compagnon virtuel}{subsection.7.2}% 53
-\BOOKMARK [1][-]{section*.12}{Conclusion}{}% 54
-\BOOKMARK [1][-]{section*.12}{Bibliographie}{}% 55
+\BOOKMARK [2][-]{subsection.5.1}{Ajout de plusieurs cat\351gories de questions/r\351ponses sur le site Pandorabots}{section.5}% 20
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Ajouter un r\351veil sans r\351p\351tition}{subsection.5.1}% 21
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Ajouter un r\351veil avec r\351p\351tition}{subsection.5.1}% 22
+\BOOKMARK [3][-]{subsubsection.5.1.3}{Supprimer un r\351veil}{subsection.5.1}% 23
+\BOOKMARK [3][-]{subsubsection.5.1.4}{Ajouter un rendez-vous}{subsection.5.1}% 24
+\BOOKMARK [3][-]{subsubsection.5.1.5}{Supprimer un rendez-vous}{subsection.5.1}% 25
+\BOOKMARK [3][-]{subsubsection.5.1.6}{R\351aliser une recherche en Google Map}{subsection.5.1}% 26
+\BOOKMARK [3][-]{subsubsection.5.1.7}{Envoyer un sms}{subsection.5.1}% 27
+\BOOKMARK [2][-]{subsection.5.2}{Modification de l'interface d'utilisateur}{section.5}% 28
+\BOOKMARK [2][-]{subsection.5.3}{Changement du personnage}{section.5}% 29
+\BOOKMARK [1][-]{section.6}{Probl\350mes rencontr\351s et r\351solutions}{}% 30
+\BOOKMARK [2][-]{subsection.6.1}{Probl\350mes avant le d\351veloppement}{section.6}% 31
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Probl\350me de signature de d\351veloppeur}{subsection.6.1}% 32
+\BOOKMARK [3][-]{subsubsection.6.1.2}{La connection avec le serveur Pandorabots}{subsection.6.1}% 33
+\BOOKMARK [3][-]{subsubsection.6.1.3}{Le probl\350me de protocole SSL}{subsection.6.1}% 34
+\BOOKMARK [2][-]{subsection.6.2}{Difficult\351s en d\351veloppant les fonctionnalit\351s}{section.6}% 35
+\BOOKMARK [3][-]{subsubsection.6.2.1}{L'activit\351 Map}{subsection.6.2}% 36
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Probl\350mes avec le niveau d'API Android}{subsection.6.2}% 37
+\BOOKMARK [3][-]{subsubsection.6.2.3}{Supprimer un r\351veil}{subsection.6.2}% 38
+\BOOKMARK [3][-]{subsubsection.6.2.4}{Afficher un calendrier au sein de l'application}{subsection.6.2}% 39
+\BOOKMARK [3][-]{subsubsection.6.2.5}{Contenu AIML avec accent}{subsection.6.2}% 40
+\BOOKMARK [1][-]{section.7}{Ce que nous ...}{}% 41
+\BOOKMARK [2][-]{subsection.7.1}{... Aurions d\373 faire}{section.7}% 42
+\BOOKMARK [3][-]{subsubsection.7.1.1}{Apprentissage du chatbot}{subsection.7.1}% 43
+\BOOKMARK [2][-]{subsection.7.2}{... pourrions faire par la suite}{section.7}% 44
+\BOOKMARK [3][-]{subsubsection.7.2.1}{R\351aliser les fonctionnalit\351s avec l'API propre}{subsection.7.2}% 45
+\BOOKMARK [3][-]{subsubsection.7.2.2}{Am\351liorer l'interface d'utilisateur encore}{subsection.7.2}% 46
+\BOOKMARK [3][-]{subsubsection.7.2.3}{Ajout des fonctionnalit\351s quotidiennes}{subsection.7.2}% 47
+\BOOKMARK [3][-]{subsubsection.7.2.4}{Gestion de la langue du compagnon virtuel}{subsection.7.2}% 48
+\BOOKMARK [1][-]{section*.12}{Conclusion}{}% 49
+\BOOKMARK [1][-]{section*.12}{Bibliographie}{}% 50

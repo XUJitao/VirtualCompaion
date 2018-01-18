@@ -1,24 +1,71 @@
 \section*{Chapitre 4}
 \section{Conception Détaillée}
-\indent Cette étape nous permet, à partir de l'étape de conception préliminaire, de préciser l'algorithme des fonctions ou procédures principales.
+\indent Cette étape nous permet, à partir de l'étape de conception préliminaire, de préciser comment implémenter des fonctions ou procédures principales. Si certains algorithmes sont compliqués, nous allons les mettre dans cette partie. 
 
 \indent En effet, nous avons construit notre conception détaillée sur les codes déjà existants. Dans ce cas-là, les algorithmes contenaient les expressions spécifiques de dévoloppement Android.
 
-\subsection{addAnAlarme}
-	\lstinputlisting[caption=addAnAlarm]{./algorithmes/addAnAlarm}
+\subsection{Mis en place des différentes fonctionnalités}
+	
+\indent Comme nous l'avons dit précédemment, nous avons suivi un cours sur \url{www.udacity.com} pour apprendre la base de développer une application sous Android et nous avons effectué une recherche bibliographique pour mettre en place les fonction suivantes : launchGoogleMap, sendSMS, addAnAlarm, deleteAnAlarm, setAppointement, getNextEvent, setNextEvent. Les cinq premières fonctions ont été implémentées dans la classe Chatbot, les deux suivantes dans la classe ToolManager afin de renouvler le prochain événenment en temps réel.
 
-\subsection{sendSMS}
-	\lstinputlisting[caption=sendSMS]{./algorithmes/sendSMS}
+\indent Toutes les fonctions sont appelées dans la méthode \textbf{\emph{process$_-$oobContent(String oobContent, String textToSpeak)}} sauf \textbf{\emph{getNextEvent}} et \textbf{\emph{setNextEvent}}. Le paramètre "oobContent" contient l'information retourner par le serveur Pandorabots entre "<oob>" et "</oob >". Le deuxième "textToSpeak" ne concerne pas nos fonctions.
+
+\subsubsection{Lancer Google Map}
+
+\indent Premièrement, selon notre recherche, toutes les chaînes de caractère transmises à l'intention de Google Maps doivent être encodées sous forme d'URI. Dans notre fonction, il faut remplacer tous les espaces ' ' par "\%20" ou '+'. Nous avons choisi de les remplacer par '+'. Ensuite, nous avons créé un instance de \textbf{\emph{Intent}}, qui permet de lancer une application depuis l'activité actuelle. 
+
+\indent En effet, nous avions essayé d'afficher la carte de Google Map dans notre application, néanmoins elle ne garde pas toutes les fonctionnalités de l'application Google Map. Nous avons donc décidé de l'abandonner. Nous allons le préciser dans la chapitre 6.
+
+\subsubsection{Envoyer SMS}
+
+\indent Nous proposons deux types de destination du sms : un numéro de téléphone mobile ou un correspondant dans le carnet d'adresses.  Pour les réaliser, il faut toujours déterminer le type de premier caractère de destination. Si c'est une lettre, donc nous prenons le mode 'correspondant', sinon, nous prenons le mode 'numéro de téléphone mobile'. Grâce au instance \textbf{\emph{Intent}}, notre fonction pouvons lire le String qui décrit la destination du sms. 
+
+\indent Si nous sommes tombé dans le deuxième mode, nous allons chercher le numéro de téléphone mobile dans le carnet d'adresses, et puis envoyer le sms par le numéro.\\
+
+\indent Identiquement, nous écrivons le contenu du sms par l'instance \textbf{\emph{Intent}}.
+
+\indent L'algorithme :
+\lstinputlisting[caption=sendSMS]{./algorithmes/sendSMS}
 
 	Cette fonction est modifiée selon la fonction \textbf{\emph{makePhoneCall(String oobContent)}}. Le principe d'algorithme reste la même. Nous avons changé ce qui concerne "à appeler" avec ce qui concerne "à envoyer SMS".
+	
+\subsubsection{Ajouter et Supprimer un réveil}
 
-\subsection{setAppointement}
-	\lstinputlisting[caption=setAppointement]{./algorithmes/setAppointement}
+\indent Idée principale :
 
-\subsection{setBeginTimeAndGetTitle}
-	\lstinputlisting[caption=setBeginTimeAndGetTitle]{./algorithmes/setBeginTimeAndGetTitle}
+\indent Pour ajouter un réveil, simplement, nous déterminons la date et l'heure du réveil avec la reconnaissance vocale. Ensuite, nous utilisons toujours un instance de \textbf{\emph{Intent}} qui nous permet de réaliser l'ajout des informations pour un réveil. Après, c'est important de déterminer la répétition du réveil. Par différentes chaînes de caractères, nous trouvrons la demande de répétition d'utilisateur. Finalement, nous finisons l'ajout du réveil.
 
-\subsection{getNextEvent}
-	\lstinputlisting[caption=getNextEvent]{./algorithmes/getNextEvent}
+\indent Pour supprimer un réveil, c'est plus simple. Nous cherchons la date et l'heure du réveil et le supprimer directement.
 
-\newpage
+\indent Pour les détails du code: 
+
+\indent Nous avons trouvé que la chaîne de reconnaissance vocale pour le temps est sous format "*h*", par exemple "14h35". Nous avons donc séparé la chaîne par 'h' et pris la première partie comme l'heure du réveil. Nous avons mis la minute du réveil à 0 par défaut s'il manque la deuxième partie dans la chaîne. Il faut ajouter une permission de régler l'alarme dans le fichier \textbf{\emph{AndroidManifest.xml}} : \\
+	\begin{lstlisting}[frame=none,aboveskip=-0.5em,basicstyle=\footnotesize\bfseries]
+	<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+	\end{lstlisting}
+
+\indent Nous avons implémenté la fonction \textbf{\emph{deleteAnAlarm(String oobContent)}}. Pour réaliser la fonctionnalité, nous devions utiliser une constante \textbf{\emph{AlarmClock.ACTION$_-$DISMISS $_-$ALARM}} qui a besoin d'une API à la version supérieur ou égal à 23. Cependant, les appareils que nous avions ne possédait qu'à la version 19. En conséquence, nous ne pourrions pas réaliser cette fonctionnalité. Nous allons le préciser dans la chapitre 6.
+
+\indent L'algorithme :
+\lstinputlisting[caption=addAnAlarm]{./algorithmes/addAnAlarm}
+
+\subsubsection{Gestion du rendez-vous}
+
+\subsubsection*{Ajouter et Supprimer un rendez-vous}
+
+\indent Nous avons modifié la version précédente pour intégrer le traitement de gestion de calendrier au serveur externe, Pandorabots. Nous avons gardé les méthodes pour initialiser l'instance de \textbf{\emph{GestionCalendar}} et les méthodes \textbf{\emph{ajouterRDV(String titre, Calendar beginTime, Calendar endTime)}} et \textbf{\emph{supprimerRDV(String titre, Calendar beginDate,Calendar endDate)}}. Ces deux dernières nous permet d'ajouter ou de supprimer un rendez-vous dans l'agenda de l'appareil.
+
+\indent Nous avons créé une méthode \textbf{\emph{setAppointement(GestionCalendar Gcal, String oobContent, String operationType)}} qui nous permet de distinguer l'ajout et la suppression du rendez-vous. Pour pouvoir utiliser les méthodes déjà existantes, il faut avoir le titre, la date de début et la date de fin du rendez-vous. Pour simplifier le traitement, nous avons créé une méthode \textbf{\emph{setBeginTimeAndGetTitle(String oobContent, Calendar beginTime, String operationType)}} qui règle la date de début et retourne le titre de rendez-vous en même temps. Dans cette dernière méthode, le paramètre \textbf{\emph{beginTime}} en entrée est la date actuelle du système. Nous avons mis par défaut toutes les parties de la date comme la date actuelle. Nous avons vérifié la chaîne \textbf{\emph{oobContent}} dans l'ordre suivantes : jour, mois, an, heure, minute, titre. Pour chaque partie précisée, nous avons mis à jour l'information. Si l'utilisateur n'a pas précisé le titre du rendez-vous, le titre par défaut sera une chaîne vide.
+
+\indent La méthode \textbf{\emph{setBeginTimeAndGetTitle}} permet l'utilisateur de ne pas préciser n'importe quelle partie d'une date tant que les informations précisées sont dans l'ordre.
+
+\indent L'algorithme :
+\lstinputlisting[caption=setAppointement]{./algorithmes/setAppointement}
+
+\lstinputlisting[caption=setBeginTimeAndGetTitle]{./algorithmes/setBeginTimeAndGetTitle}
+\subsubsection*{Mettre à jour le prochain rendez-vous}
+
+\indent Nous avons aussi supprimé la méthode \textbf{\emph{prochainRDV}} pour créer une nouvelle dans la classe \textbf{\emph{ToolManager}}. La méthode \textbf{\emph{getNextEvent()}} permet de retourner une chaîne de caractères qui contient les informations du prochain rendez-vous. Dans la méthode, nous avons créer un instance de \textbf{\emph{Cursor}} qui peut se déplacer comme un pointeur. Nous cherchions dans la liste d'événements stockés dans l'agenda de l'appareil pour trouver l'événement le plus proche de la date actuelle.
+
+\indent L'algorithme :
+\lstinputlisting[caption=getNextEvent]{./algorithmes/getNextEvent}
